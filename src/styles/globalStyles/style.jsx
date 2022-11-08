@@ -16,8 +16,6 @@ export const GlobalStyles = createGlobalStyle`
     font-size: 14px;
     line-height: 18px;
     font-weight: 700;
-    width: 100vw;
-    height: 100vh;
     color: #D7E0FF;
   }
 
