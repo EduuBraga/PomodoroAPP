@@ -1,6 +1,10 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
+   ::-webkit-scrollbar {
+    display: none;
+  }
+
   *{
     margin: 0px;
     padding: 0px;
@@ -17,6 +21,7 @@ export const GlobalStyles = createGlobalStyle`
     line-height: 18px;
     font-weight: 700;
     color: #D7E0FF;
+    height: 800px;
   }
 
   h1{
