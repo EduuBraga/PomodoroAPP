@@ -1,22 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext } from "react";
+import { PomodoroContext } from "../../provider/PomodoroSettings";
 
 import { Button } from "../Button/style";
 
 import { Container, Title, Controls } from "./style";
 
 export function App() {
-  const [optionActive, setOptionActive] = useState('option1')
-
-  function changeOptionON(event) {
-    const options = document.querySelectorAll('.options')
-    let optionClicked = event.target
-
-    options.forEach((option, index) => {
-      if (option === optionClicked) {
-        setOptionActive(`option${index}`)
-      }
-    })
-  }
+  const {changeOptionON, optionActive} = useContext(PomodoroContext)
 
   return (
     <Container>
