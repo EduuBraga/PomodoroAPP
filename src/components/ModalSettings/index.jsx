@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
+import { PomodoroContext } from "../../provider/PomodoroSettings";
 
 import closeImgURL from '../../assets/icons/close.png'
+import checkImgURL from '../../assets/icons/check.png'
 
 import { Container, Card, HeaderCard, ContentCard, ContainerMinutes, InputsMinutes, ContainerFonts, ContainerColors } from "./style";
 
 export function ModalSettings() {
+  const { changeOptionColorON, changeOptionTextON, optionText, optionColor } = useContext(PomodoroContext)
+
   return (
     <Container>
       <Card>
@@ -35,23 +39,31 @@ export function ModalSettings() {
             </InputsMinutes>
           </ContainerMinutes>
 
-          <ContainerFonts>
+          <ContainerFonts isCheck={optionText}>
             <h4>FONT</h4>
 
             <div>
-              <div>Aa</div>
-              <div>Aa</div>
-              <div>Aa</div>
+              <div onClick={changeOptionTextON} className="options_text">Aa</div>
+              <div onClick={changeOptionTextON} className="options_text">Aa</div>
+              <div onClick={changeOptionTextON} className="options_text">Aa</div>
             </div>
           </ContainerFonts>
 
-          <ContainerColors>
+          <ContainerColors isCheck={optionColor}>
             <h4>COLOR</h4>
 
             <div>
-              <span className="options_colors"></span>
-              <span className="options_colors"></span>
-              <span className="options_colors"></span>
+              <span onClick={changeOptionColorON} className="options_colors">
+                {optionColor === 'option_color0' && <img src={checkImgURL} alt="Ícone de check" />}
+              </span>
+
+              <span onClick={changeOptionColorON} className="options_colors">
+                {optionColor === 'option_color1' && <img src={checkImgURL} alt="Ícone de check" />}
+              </span>
+
+              <span onClick={changeOptionColorON} className="options_colors">
+                {optionColor === 'option_color2' && <img src={checkImgURL} alt="Ícone de check" />}
+              </span>
             </div>
           </ContainerColors>
         </ContentCard>

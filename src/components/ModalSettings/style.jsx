@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-import checkImgURL from '../../assets/icons/check.png'
-
 export const Container = styled.div`
   background-color: #0A0C1C80;
   position: fixed;
@@ -101,20 +99,20 @@ export const ContainerFonts = styled.div`
     }
 
     div:nth-child(1){
-      background-color: #000000;
-      color: #ffffff;
+      background-color: ${props=> props.isCheck === 'option_text0' ? '#000000' : '#EFF1FA'};
+      color: ${props=> props.isCheck === 'option_text0' ? '#ffffff' : '#1E213F'};
       font-family: 'Kumbh Sans', sans-serif !important;
     }
 
     div:nth-child(2){
-      background-color: #EFF1FA;
-      color: #1E213F;
+      background-color: ${props=> props.isCheck === 'option_text1' ? '#000000' : '#EFF1FA'};
+      color: ${props=> props.isCheck === 'option_text1' ? '#ffffff' : '#1E213F'};
       font-family: 'Roboto Slab', serif !important
     }
 
     div:nth-child(3){
-      background-color: #EFF1FA;
-      color: #1E213F;
+      background-color: ${props=> props.isCheck === 'option_text2' ? '#000000' : '#EFF1FA'};
+      color: ${props=> props.isCheck === 'option_text2' ? '#ffffff' : '#1E213F'};
       font-family: 'Space Mono', monospace !important;
     }
   }
@@ -136,6 +134,13 @@ export const ContainerColors = styled.div`
       width: 40px;
       height: 40px;
       border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img{
+        width: 14px;
+      }
     }
 
     span:nth-child(1){
