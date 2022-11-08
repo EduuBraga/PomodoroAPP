@@ -1,20 +1,21 @@
 import React, { useContext } from "react";
 import { PomodoroContext } from "../../provider/PomodoroSettings";
 
-import closeImgURL from '../../assets/icons/close.png'
-import checkImgURL from '../../assets/icons/check.png'
+import closeImgURL from '../../assets/icons/close.png';
+import checkImgURL from '../../assets/icons/check.png';
 
 import { Container, Card, HeaderCard, ContentCard, ContainerMinutes, InputsMinutes, ContainerFonts, ContainerColors } from "./style";
+import { Button } from "../Button/style";
 
-export function ModalSettings() {
-  const { changeOptionColorON, changeOptionTextON, optionText, optionColor } = useContext(PomodoroContext)
+export function ModalSettings({ setModalVisible }) {
+  const { changeOptionColorON, changeOptionTextON, optionText, optionColor } = useContext(PomodoroContext);
 
   return (
     <Container>
       <Card>
         <HeaderCard>
           <h2>Settings</h2>
-          <img src={closeImgURL} alt="Ícone para fechar o modal" />
+          <img onClick={_ => { setModalVisible(false) }} src={closeImgURL} alt="Ícone para fechar o modal" />
         </HeaderCard>
 
         <ContentCard>
@@ -67,7 +68,9 @@ export function ModalSettings() {
             </div>
           </ContainerColors>
         </ContentCard>
+
+        <Button>Aplly</Button>
       </Card>
     </Container>
-  )
-}
+  );
+};

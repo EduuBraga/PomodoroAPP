@@ -19,12 +19,20 @@ export const Card = styled.section`
   border-radius: 25px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  position: relative;
+
+  button{
+    position: absolute;
+    bottom: -28px;
+  }
 `
 
 export const HeaderCard = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 
   padding: 32px 40px;
   border-bottom: 1px solid #E3E1E1;
@@ -32,6 +40,7 @@ export const HeaderCard = styled.header`
   img{
     width: 14px;
     height: 14px;
+    cursor: pointer;
   }
 `
 
@@ -96,6 +105,7 @@ export const ContainerFonts = styled.div`
       width: 40px;
       height: 40px;
       border-radius: 50%;
+      cursor: pointer;
     }
 
     div:nth-child(1){
@@ -137,6 +147,7 @@ export const ContainerColors = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
+      cursor: pointer;
 
       img{
         width: 14px;
