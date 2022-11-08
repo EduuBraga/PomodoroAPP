@@ -18,7 +18,7 @@ export const GlobalStyles = createGlobalStyle`
     font-weight: 700;
     width: 100vw;
     height: 100vh;
-    color: white;
+    color: #D7E0FF;
   }
 
   h1{

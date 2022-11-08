@@ -1,14 +1,19 @@
 import React from "react";
+
 import { Button } from "../Button/style";
+
+import { Container, Title, Controls } from "./style";
 
 export function App(){
   return(
-    <div>
-      <h1>Olá, mundo!</h1>
-      <h2>Olá, mundo!</h2>
-      <h3>Olá, mundo!</h3>
-      <h4>Olá, mundo!</h4>
-      <Button>Button</Button>
-    </div>
+    <Container>
+      <Title>Pomodoro</Title>
+
+      <Controls>
+        <Button>pomodoro</Button>
+        <Button>short break</Button>
+        <Button>long break</Button>
+      </Controls>
+    </Container>
   );
 };
