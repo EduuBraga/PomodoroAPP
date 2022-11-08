@@ -1,6 +1,6 @@
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 
-export function CircleTimer({timer = 60, begin = true}) {
+export function CircleTimer({timer = 60, begin = false}) {
   return (
     <CountdownCircleTimer
       size={'339'}

@@ -7,6 +7,7 @@ import { Button } from "../Button/style";
 
 import { Container, Title, Controls, Timer, BorderBackground, ContainerSettings } from "./style";
 import { CircleTimer } from "../CircleTimer";
+import { ModalSettings } from "../ModalSettings";
 
 export function App() {
   const { changeOptionON, optionActive } = useContext(PomodoroContext);
@@ -30,6 +31,8 @@ export function App() {
       <ContainerSettings>
         <img src={settingsImgURL} alt="Ícone de configurações" />
       </ContainerSettings>
+
+      <ModalSettings></ModalSettings>
     </Container>
   );
 };
