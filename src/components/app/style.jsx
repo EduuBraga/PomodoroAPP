@@ -23,6 +23,7 @@ export const Controls = styled.div`
   padding: 8px;
   display: flex;
   justify-content: center;
+  z-index: 10;
 
   button{
     font-weight: 700;
@@ -50,34 +51,27 @@ export const Controls = styled.div`
 `
 
 export const Timer = styled.section`
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 20px;
-`
-
-export const ContentTimer = styled.section`
   background-color: #161932;
+  border-radius: 50%;
   width: 366px;
   height: 366px;
-  border-radius: 50%;
-  z-index: 5;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 19px;
 `
 
 export const BorderBackground = styled.div`
   width: 410px;
   height: 410px;
-  border-radius: 50%;
   position: absolute;
+  border-radius: 50%;
   background-image: linear-gradient(315deg, #2E325A 0%, #0E112A 100%); 
-  z-index: 1;
+  box-shadow: -50px -50px 100px #272C5A, 50px 50px 100px #121530;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 export const ContainerSettings = styled.section`
