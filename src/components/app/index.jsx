@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
 import { PomodoroContext } from "../../provider/PomodoroSettings";
 
+import settingsImgURL from '../../assets/icons/settings.png'
+
 import { Button } from "../Button/style";
 
-import { Container, Title, Controls, Timer, ContentTimer, BorderBackground } from "./style";
+import { Container, Title, Controls, Timer, ContentTimer, BorderBackground, ContainerSettings } from "./style";
 
 export function App() {
   const { changeOptionON, optionActive } = useContext(PomodoroContext)
@@ -20,12 +22,16 @@ export function App() {
 
       <Timer>
         <BorderBackground />
-        
+
         <ContentTimer>
           <h1>00:00</h1>
           <h3>restart</h3>
         </ContentTimer>
       </Timer>
+
+      <ContainerSettings>
+        <img src={settingsImgURL} alt="Ícone de configurações" />
+      </ContainerSettings>
     </Container>
   );
 };

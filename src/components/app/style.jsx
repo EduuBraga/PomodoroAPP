@@ -79,3 +79,14 @@ export const BorderBackground = styled.div`
   background-image: linear-gradient(315deg, #2E325A 0%, #0E112A 100%); 
   z-index: 1;
 `
+
+export const ContainerSettings = styled.section`
+ margin-top: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img{
+    width: 28px;
+  }
+`
