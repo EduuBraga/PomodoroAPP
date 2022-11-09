@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useState } from "react";
 
 export const PomodoroContext = createContext();
 
@@ -15,10 +15,10 @@ export function PomodoroProvider({ children }) {
 
     options.forEach((option, index) => {
       if (option === optionClicked) {
-        setOptionActive(`option${index}`)
+        setOptionActive(`option${index}`);
       }
     });
-  };
+  }
 
   function changeOptionColorON(event) {
     const optionsColors = document.querySelectorAll('.options_colors');
@@ -26,10 +26,10 @@ export function PomodoroProvider({ children }) {
 
     optionsColors.forEach((option, index) => {
       if (option === optionClicked) {
-        setOptionColor(`option_color${index}`)
+        setOptionColor(`option_color${index}`);
       }
     });
-  };
+  }
 
   function changeOptionTextON(event) {
     const optionsTexts = document.querySelectorAll('.options_text');
@@ -37,10 +37,10 @@ export function PomodoroProvider({ children }) {
 
     optionsTexts.forEach((option, index) => {
       if (option === optionClicked) {
-        setOptionText(`option_text${index}`)
+        setOptionText(`option_text${index}`);
       }
     });
-  };
+  }
 
 
   // Manipulando os inputs
@@ -49,55 +49,99 @@ export function PomodoroProvider({ children }) {
   const [minutesShortBreak, setMinutesShortBreak] = useState(5);
   const [minutesLongBreak, setMinutesLongBreak] = useState(15);
 
-  function str_pad_left(string, pad, length) {
-    return (new Array(length + 1).join(pad) + string).slice(-length);
-  }
-
   function changeValueInputPomodoro(event) {
     setMinutesPomodoro(Number(event.target.value));
-  };
+  }
 
   function changeValueInputShortBreak(event) {
     setMinutesShortBreak(Number(event.target.value));
-  };
+  }
 
   function changeValueInputLongBreak(event) {
     setMinutesLongBreak(Number(event.target.value));
-  };
+  }
 
 
   // Manipulando o Pomodoro
 
-  const [newTimer, setNewTimer] = useState({ pomodoro: 4, short: 3, long: 1, active: 'pomodoro' })
-  const [beginTimer, setBeginTimer] = useState(false)
+  const [newTimer, setNewTimer] = useState({ pomodoro: 4, short: 3, long: 1 })
+  const [executing, setExecuting] = useState('pomodoro');
+  const [timer, setTimer] = useState(minutesPomodoro);
+  const [keyPomodoro, setKeyPomodoro] = useState(1);
+  const [beginTimer, setBeginTimer] = useState(false);
 
   function toggleStartTimer() {
-    beginTimer ? setBeginTimer(false) : setBeginTimer(true)
+    beginTimer ? setBeginTimer(false) : setBeginTimer(true);
+  }
+
+  function minutesAndSeconds(string, pad, length) {
+    return (new Array(length + 1).join(pad) + string).slice(-length);
   }
 
   function toggleStatePomodoro() {
-    let active = newTimer.active
-    let pomodoroTotal = newTimer.pomodoro
-    let shortTotal = newTimer.short
-    let longTotal = newTimer.long
+    let pomodoroTotal = newTimer.pomodoro;
+    let shortTotal = newTimer.short;
+    let longTotal = newTimer.long;
 
-    if (active === 'pomodoro' && pomodoroTotal - 1 !== 0) {
-      setNewTimer({ ...newTimer, active: 'short', pomodoro: Number(`${newTimer.pomodoro - 1}`) })
+    if (executing === 'pomodoro' && pomodoroTotal - 1 !== 0) {
+      setNewTimer({ ...newTimer, pomodoro: Number(`${newTimer.pomodoro - 1}`) });
+      setExecuting('short');
+      setBeginTimer(false);
+      setKeyPomodoro(prevState => prevState + 1);
     }
-    else if (active === 'short' && shortTotal !== 0) {
-      setNewTimer({ ...newTimer, active: 'pomodoro', short: Number(`${newTimer.short - 1}`) })
+    else if (executing === 'short' && shortTotal !== 0) {
+      setNewTimer({ ...newTimer, short: Number(`${newTimer.short - 1}`) });
+      setExecuting('pomodoro');
+      setBeginTimer(false);
+      setKeyPomodoro(prevState => prevState + 1);
     }
     else if (shortTotal === 0 && pomodoroTotal === 1 && longTotal === 1) {
-      setNewTimer({ ...newTimer, active: 'long', long: Number(`${parseInt(newTimer.long - 1)}`) })
+      setNewTimer({ ...newTimer, long: Number(`${parseInt(newTimer.long - 1)}`) });
+      setExecuting('long');
+      setBeginTimer(false);
+      setKeyPomodoro(prevState => prevState + 1);
     }
     else {
-      setNewTimer({ ...newTimer, pomodoro: 4, short: 3, long: 1, active: 'pomodoro' })
+      setNewTimer({ ...newTimer, pomodoro: 4, short: 3, long: 1 });
+      setExecuting('pomodoro');
+      setBeginTimer(false);
+      setKeyPomodoro(prevState => prevState + 1);
     }
-  };
+  }
 
-  // useEffect(() => {
-  //   console.log(newTimer)
-  // }, [newTimer])
+  function toggleSectionPomodoro(e) {
+    let optionName = e.target.name;
+
+    if (executing !== optionName) {
+      switch (optionName) {
+        case 'pomodoro':
+          setKeyPomodoro(prevState => prevState + 1)
+          setExecuting(optionName)
+          setBeginTimer(false)
+          setTimer(minutesPomodoro)
+          setOptionActive('option0')
+          break;
+        case 'short':
+          setExecuting(optionName)
+          setBeginTimer(false)
+          setTimer(minutesShortBreak)
+          setKeyPomodoro(prevState => prevState + 1)
+          setOptionActive('option1')
+          break;
+        case 'long':
+          setExecuting(optionName)
+          setBeginTimer(false)
+          setTimer(minutesLongBreak)
+          setKeyPomodoro(prevState => prevState + 1)
+          setOptionActive('option2')
+          break;
+        default:
+          break;
+      }
+    } else {
+      return null
+    }
+  }
 
   return (
     <PomodoroContext.Provider value={{
@@ -115,10 +159,18 @@ export function PomodoroProvider({ children }) {
       changeValueInputLongBreak,
       toggleStartTimer,
       beginTimer,
-      str_pad_left,
-      toggleStatePomodoro
+      minutesAndSeconds,
+      newTimer,
+      setNewTimer,
+      toggleStatePomodoro,
+      toggleSectionPomodoro,
+      executing,
+      setExecuting,
+      timer,
+      setTimer,
+      keyPomodoro
     }}>
       {children}
     </PomodoroContext.Provider>
   );
-};
+}
