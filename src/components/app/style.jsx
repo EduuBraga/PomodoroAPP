@@ -30,6 +30,10 @@ export const Controls = styled.div`
     font-weight: 700;
     font-size: 14px;
     line-height: 17px;
+
+    &:hover{
+      opacity: 1 !important;
+    }
   }
 
   button:nth-child(1){
