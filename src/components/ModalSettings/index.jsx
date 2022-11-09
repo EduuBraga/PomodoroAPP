@@ -8,7 +8,18 @@ import { Container, Card, HeaderCard, ContentCard, ContainerMinutes, InputsMinut
 import { Button } from "../Button/style";
 
 export function ModalSettings({ setModalVisible }) {
-  const { changeOptionColorON, changeOptionTextON, optionText, optionColor } = useContext(PomodoroContext);
+  const {
+    changeOptionColorON,
+    changeOptionTextON,
+    optionText,
+    optionColor,
+    minutesPomodoro,
+    minutesShortBreak,
+    minutesLongBreak,
+    changeValueInputPomodoro,
+    changeValueInputShortBreak,
+    changeValueInputLongBreak
+  } = useContext(PomodoroContext);
 
   return (
     <Container>
@@ -25,17 +36,17 @@ export function ModalSettings({ setModalVisible }) {
             <InputsMinutes>
               <div>
                 <label>pomodoro</label>
-                <input type="number" defaultValue={25} />
+                <input type="number" onChange={changeValueInputPomodoro} value={minutesPomodoro} />
               </div>
 
               <div>
                 <label>short break</label>
-                <input type="number" defaultValue={5} />
+                <input type="number" onChange={changeValueInputShortBreak} value={minutesShortBreak} />
               </div>
 
               <div>
                 <label>long break</label>
-                <input type="number" defaultValue={15} />
+                <input type="number" onChange={changeValueInputLongBreak} value={minutesLongBreak} />
               </div>
             </InputsMinutes>
           </ContainerMinutes>
