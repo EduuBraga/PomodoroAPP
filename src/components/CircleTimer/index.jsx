@@ -1,28 +1,44 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 import { PomodoroContext } from '../../provider/PomodoroSettings';
 
 import { Container } from './style';
 
-export function CircleTimer({ timer = 60, begin = false }) {
-  const { toggleStartTimer, beginTimer } = useContext(PomodoroContext)
+export function CircleTimer({timer = 25}) {
+  const { toggleStartTimer, beginTimer, str_pad_left } = useContext(PomodoroContext)
+
+  const [finalTimePomodoro, setFinalTimePomodoro] = useState('25:00')
+  const [finalTimeShort, setFinalTimeShort] = useState('05:00')
+  const [finalTimeLong, setFinalTimeLong] = useState('15:00')
 
   return (
     <CountdownCircleTimer
       size={'339'}
       isPlaying={beginTimer}
-      duration={60}
+      duration={timer * 60}
       colors={['#F87070']}
       strokeWidth={14}
       trailColor="#161932"
       onComplete={() => {
+        
       }}
+      onUpdate={
+        (remainingTime) => {
+          let minutes = Math.floor(remainingTime / 60);
+          let seconds = remainingTime - minutes * 60;
+
+          let finalTime = str_pad_left(minutes, '0', 2) + ':' + str_pad_left(seconds, '0', 2);
+
+          setFinalTimePomodoro(finalTime)
+        }
+      }
     >
-      {({ remainingTime }) =>
+      {() =>
         <Container>
-          <h1>{remainingTime}</h1>
+          <h1>{finalTimePomodoro}</h1>
           {beginTimer ? (<h3 onClick={toggleStartTimer}>pause</h3>) : (<h3 onClick={toggleStartTimer}>start</h3>)}
-        </Container>}
+        </Container>
+      }
     </CountdownCircleTimer>
   );
 };

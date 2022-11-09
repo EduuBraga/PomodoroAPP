@@ -3,6 +3,17 @@ import React, { createContext, useState } from "react";
 export const PomodoroContext = createContext();
 
 export function PomodoroProvider({ children }) {
+  // Manipulando o Pomodoro
+
+  const [newTimer, setNewTimer] = useState({ pomodoro: 4, short: 3, long: 1, active: 'pomodoro' })
+  const [pomodoro, setPomodoro] = useState(0)
+  const [executing, setExecuting] = useState({})
+  const [beginTimer, setBeginTimer] = useState(false)
+
+  function toggleStartTimer() {
+    beginTimer ? setBeginTimer(false) : setBeginTimer(true)
+  }
+
   // Manipulando as opções de cor, fonte e de parte do pomodoro
 
   const [optionActive, setOptionActive] = useState('option0');
@@ -48,9 +59,16 @@ export function PomodoroProvider({ children }) {
   const [minutesShortBreak, setMinutesShortBreak] = useState(5);
   const [minutesLongBreak, setMinutesLongBreak] = useState(15);
 
+  function str_pad_left(string, pad, length) {
+    return (new Array(length + 1).join(pad) + string).slice(-length);
+  }
+
   function changeValueInputPomodoro(event) {
-    setMinutesPomodoro(Number(event.target.value));
+    let valueSecondsInput = Number(event.target.value);
+
+    setMinutesPomodoro(valueSecondsInput);
   };
+
 
   function changeValueInputShortBreak(event) {
     setMinutesShortBreak(Number(event.target.value));
@@ -59,16 +77,6 @@ export function PomodoroProvider({ children }) {
   function changeValueInputLongBreak(event) {
     setMinutesLongBreak(Number(event.target.value));
   };
-
-  // Manipulando o Pomodoro
-
-  const [pomodoro, setPomodoro] = useState(0)
-  const [executing, setExecuting] = useState({})
-  const [beginTimer, setBeginTimer] = useState(false)
-
-  function toggleStartTimer(){
-    beginTimer ? setBeginTimer(false) : setBeginTimer(true)
-  }
 
   return (
     <PomodoroContext.Provider value={{
@@ -85,7 +93,8 @@ export function PomodoroProvider({ children }) {
       changeValueInputShortBreak,
       changeValueInputLongBreak,
       toggleStartTimer,
-      beginTimer
+      beginTimer,
+      str_pad_left
     }}>
       {children}
     </PomodoroContext.Provider>
