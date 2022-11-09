@@ -6,12 +6,27 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   gap: 18px;
+`
 
-  h3{
-    cursor: pointer;
+export const Button = styled.button`
+  border: none;
+  cursor: pointer;
+  font: 16px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 21px;
+  text-align: center;
+  letter-spacing: 15px;
+  color: #D7E0FF;
+  text-transform: uppercase;
+  background-color: #00000000;
+  transition: all 0.3s ease;
 
-    &:active{
-      transform: scale(0.98);
-    }
+  &:active{
+    transform: scale(0.96);
+    color: #F87070;
+  }
+  &:hover{
+    color: #F87070;
   }
 `

@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 import { PomodoroContext } from '../../provider/PomodoroSettings';
 
-import { Container } from './style';
+import { Container, Button } from './style';
 
 export function CircleTimer() {
   const {
@@ -42,7 +42,7 @@ export function CircleTimer() {
       {() =>
         <Container>
           <h1>{finalTimePomodoro}</h1>
-          {beginTimer ? (<h3 onClick={toggleStartTimer}>pause</h3>) : (<h3 onClick={toggleStartTimer}>start</h3>)}
+          {beginTimer ? (<Button onClick={toggleStartTimer}>pause</Button>) : (<Button onClick={toggleStartTimer}>start</Button>)}
         </Container>
       }
     </CountdownCircleTimer>
