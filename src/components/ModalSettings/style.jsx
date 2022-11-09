@@ -21,6 +21,7 @@ export const Card = styled.section`
   flex-direction: column;
   align-items: center;
   position: relative;
+  font-family: 'Kumbh Sans', sans-serif !important;
 
   button{
     position: absolute;
@@ -33,14 +34,43 @@ export const HeaderCard = styled.header`
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  font-family: 'Kumbh Sans', sans-serif !important;
 
   padding: 32px 40px;
   border-bottom: 1px solid #E3E1E1;
 
-  img{
-    width: 14px;
-    height: 14px;
-    cursor: pointer;
+  div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    
+    img:nth-child(1){
+      width: 14px;
+      cursor: pointer;
+      position: absolute;
+      opacity: 1;
+      z-index: 1;
+      transition: all 300ms ease;
+      cursor: pointer;
+
+      &:active{
+        transform: scale(0.95);
+      }
+
+      &:hover{
+        opacity: 0;
+      }
+    }
+    
+    img:nth-child(2){
+      width: 14px;
+      cursor: pointer;
+
+      &:active{
+        transform: scale(0.95);
+      }
+    }
   }
 `
 
@@ -54,6 +84,7 @@ export const ContainerMinutes = styled.div`
   gap: 24px;
   padding-bottom: 24px;
   border-bottom: 1px solid #E3E1E1;
+  font-family: 'Kumbh Sans', sans-serif !important;
 `
 
 
@@ -65,6 +96,7 @@ export const InputsMinutes = styled.div`
     display: flex;
     flex-direction: column; 
     gap: 8px;
+    font-family: 'Kumbh Sans', sans-serif !important;
     
     label{
       font-weight: 700;
@@ -94,6 +126,7 @@ export const ContainerFonts = styled.div`
   align-items: center;
   padding: 24px 0px 24px 0px;
   border-bottom: 1px solid #E3E1E1;
+  font-family: 'Kumbh Sans', sans-serif !important;
 
   div{
     display: flex;
@@ -109,20 +142,20 @@ export const ContainerFonts = styled.div`
     }
 
     div:nth-child(1){
-      background-color: ${props=> props.isCheck === 'option_text0' ? '#000000' : '#EFF1FA'};
-      color: ${props=> props.isCheck === 'option_text0' ? '#ffffff' : '#1E213F'};
+      background-color: ${props => props.isCheck === 'option_text0' ? '#000000' : '#EFF1FA'};
+      color: ${props => props.isCheck === 'option_text0' ? '#ffffff' : '#1E213F'};
       font-family: 'Kumbh Sans', sans-serif !important;
     }
 
     div:nth-child(2){
-      background-color: ${props=> props.isCheck === 'option_text1' ? '#000000' : '#EFF1FA'};
-      color: ${props=> props.isCheck === 'option_text1' ? '#ffffff' : '#1E213F'};
+      background-color: ${props => props.isCheck === 'option_text1' ? '#000000' : '#EFF1FA'};
+      color: ${props => props.isCheck === 'option_text1' ? '#ffffff' : '#1E213F'};
       font-family: 'Roboto Slab', serif !important
     }
 
     div:nth-child(3){
-      background-color: ${props=> props.isCheck === 'option_text2' ? '#000000' : '#EFF1FA'};
-      color: ${props=> props.isCheck === 'option_text2' ? '#ffffff' : '#1E213F'};
+      background-color: ${props => props.isCheck === 'option_text2' ? '#000000' : '#EFF1FA'};
+      color: ${props => props.isCheck === 'option_text2' ? '#ffffff' : '#1E213F'};
       font-family: 'Space Mono', monospace !important;
     }
   }
@@ -133,6 +166,7 @@ export const ContainerColors = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 24px 0px 24px 0px;
+  font-family: 'Kumbh Sans', sans-serif !important;
 
   div{
     display: flex;

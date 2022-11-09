@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { PomodoroContext } from "../../provider/PomodoroSettings";
 
 import closeImgURL from '../../assets/icons/close.png';
+import closeHoverImgURL from '../../assets/icons/close_hover.png';
 import checkImgURL from '../../assets/icons/check.png';
 
 import { Container, Card, HeaderCard, ContentCard, ContainerMinutes, InputsMinutes, ContainerFonts, ContainerColors } from "./style";
@@ -26,7 +27,11 @@ export function ModalSettings({ setModalVisible }) {
       <Card>
         <HeaderCard>
           <h2>Settings</h2>
-          <img onClick={_ => { setModalVisible(false) }} src={closeImgURL} alt="Ícone para fechar o modal" />
+          
+          <div>
+            <img onClick={_ => { setModalVisible(false) }} src={closeImgURL} alt="Ícone para fechar o modal" />
+            <img onClick={_ => { setModalVisible(false) }} src={closeHoverImgURL} alt="Ícone para fechar o modal" />
+          </div>
         </HeaderCard>
 
         <ContentCard>
