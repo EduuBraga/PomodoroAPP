@@ -1,13 +1,21 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 
 export const PomodoroContext = createContext();
 
 export function PomodoroProvider({ children }) {
-  // Manipulando as opções de cor, fonte e de parte do pomodoro
-
   const [optionActive, setOptionActive] = useState('option0');
   const [optionColor, setOptionColor] = useState('option_color0');
   const [optionText, setOptionText] = useState('option_text0');
+
+  const [newTimer, setNewTimer] = useState({ pomodoro: 4, short: 3, long: 1 })
+  const [minutesSections, setMinutesSections] = useState({ pomodoro: 25, short: 5, long: 15 })
+  const [executing, setExecuting] = useState('pomodoro');
+  const [timer, setTimer] = useState(minutesSections.pomodoro);
+  const [keyPomodoro, setKeyPomodoro] = useState(1);
+  const [beginTimer, setBeginTimer] = useState(false);
+
+
+  // Manipulando as opções de cor, fonte e de sessão do pomodoro.
 
   function changeOptionON(event) {
     const options = document.querySelectorAll('.options');
@@ -45,30 +53,20 @@ export function PomodoroProvider({ children }) {
 
   // Manipulando os inputs
 
-  const [minutesPomodoro, setMinutesPomodoro] = useState(25);
-  const [minutesShortBreak, setMinutesShortBreak] = useState(5);
-  const [minutesLongBreak, setMinutesLongBreak] = useState(15);
-
   function changeValueInputPomodoro(event) {
-    setMinutesPomodoro(Number(event.target.value));
+    setMinutesSections({ ...minutesSections, pomodoro: Number(event.target.value) });
   }
 
   function changeValueInputShortBreak(event) {
-    setMinutesShortBreak(Number(event.target.value));
+    setMinutesSections({ ...minutesSections, short: Number(event.target.value) });
   }
 
   function changeValueInputLongBreak(event) {
-    setMinutesLongBreak(Number(event.target.value));
+    setMinutesSections({ ...minutesSections, long: Number(event.target.value) });
   }
 
 
   // Manipulando o Pomodoro
-
-  const [newTimer, setNewTimer] = useState({ pomodoro: 4, short: 3, long: 1 })
-  const [executing, setExecuting] = useState('pomodoro');
-  const [timer, setTimer] = useState(minutesPomodoro);
-  const [keyPomodoro, setKeyPomodoro] = useState(1);
-  const [beginTimer, setBeginTimer] = useState(false);
 
   function toggleStartTimer() {
     beginTimer ? setBeginTimer(false) : setBeginTimer(true);
@@ -78,6 +76,28 @@ export function PomodoroProvider({ children }) {
     return (new Array(length + 1).join(pad) + string).slice(-length);
   }
 
+  function changeSectionPomodoro() {
+    setKeyPomodoro(prevState => prevState + 1)
+    setTimer(minutesSections.pomodoro)
+    setOptionActive('option0')
+    setExecuting('pomodoro')
+    setBeginTimer(false)
+  }
+  function changeSectionShort() {
+    setKeyPomodoro(prevState => prevState + 1)
+    setTimer(minutesSections.short)
+    setOptionActive('option1')
+    setExecuting('short')
+    setBeginTimer(false)
+  }
+  function changeSectionLong() {
+    setKeyPomodoro(prevState => prevState + 1)
+    setTimer(minutesSections.long)
+    setOptionActive('option2')
+    setExecuting('long')
+    setBeginTimer(false)
+  }
+
   function toggleStatePomodoro() {
     let pomodoroTotal = newTimer.pomodoro;
     let shortTotal = newTimer.short;
@@ -85,27 +105,19 @@ export function PomodoroProvider({ children }) {
 
     if (executing === 'pomodoro' && pomodoroTotal - 1 !== 0) {
       setNewTimer({ ...newTimer, pomodoro: Number(`${newTimer.pomodoro - 1}`) });
-      setExecuting('short');
-      setBeginTimer(false);
-      setKeyPomodoro(prevState => prevState + 1);
+      changeSectionShort()
     }
     else if (executing === 'short' && shortTotal !== 0) {
       setNewTimer({ ...newTimer, short: Number(`${newTimer.short - 1}`) });
-      setExecuting('pomodoro');
-      setBeginTimer(false);
-      setKeyPomodoro(prevState => prevState + 1);
+      changeSectionPomodoro()
     }
     else if (shortTotal === 0 && pomodoroTotal === 1 && longTotal === 1) {
       setNewTimer({ ...newTimer, long: Number(`${parseInt(newTimer.long - 1)}`) });
-      setExecuting('long');
-      setBeginTimer(false);
-      setKeyPomodoro(prevState => prevState + 1);
+      changeSectionLong()
     }
     else {
       setNewTimer({ ...newTimer, pomodoro: 4, short: 3, long: 1 });
-      setExecuting('pomodoro');
-      setBeginTimer(false);
-      setKeyPomodoro(prevState => prevState + 1);
+      changeSectionPomodoro()
     }
   }
 
@@ -115,25 +127,13 @@ export function PomodoroProvider({ children }) {
     if (executing !== optionName) {
       switch (optionName) {
         case 'pomodoro':
-          setKeyPomodoro(prevState => prevState + 1)
-          setExecuting(optionName)
-          setBeginTimer(false)
-          setTimer(minutesPomodoro)
-          setOptionActive('option0')
+          changeSectionPomodoro()
           break;
         case 'short':
-          setExecuting(optionName)
-          setBeginTimer(false)
-          setTimer(minutesShortBreak)
-          setKeyPomodoro(prevState => prevState + 1)
-          setOptionActive('option1')
+          changeSectionShort()
           break;
         case 'long':
-          setExecuting(optionName)
-          setBeginTimer(false)
-          setTimer(minutesLongBreak)
-          setKeyPomodoro(prevState => prevState + 1)
-          setOptionActive('option2')
+          changeSectionLong()
           break;
         default:
           break;
@@ -151,9 +151,6 @@ export function PomodoroProvider({ children }) {
       optionColor,
       changeOptionTextON,
       optionText,
-      minutesPomodoro,
-      minutesShortBreak,
-      minutesLongBreak,
       changeValueInputPomodoro,
       changeValueInputShortBreak,
       changeValueInputLongBreak,
@@ -161,14 +158,12 @@ export function PomodoroProvider({ children }) {
       beginTimer,
       minutesAndSeconds,
       newTimer,
-      setNewTimer,
       toggleStatePomodoro,
       toggleSectionPomodoro,
       executing,
-      setExecuting,
       timer,
-      setTimer,
-      keyPomodoro
+      keyPomodoro,
+      minutesSections
     }}>
       {children}
     </PomodoroContext.Provider>

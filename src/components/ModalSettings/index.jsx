@@ -14,12 +14,10 @@ export function ModalSettings({ setModalVisible }) {
     changeOptionTextON,
     optionText,
     optionColor,
-    minutesPomodoro,
-    minutesShortBreak,
-    minutesLongBreak,
     changeValueInputPomodoro,
     changeValueInputShortBreak,
-    changeValueInputLongBreak
+    changeValueInputLongBreak,
+    minutesSections
   } = useContext(PomodoroContext);
 
   return (
@@ -27,7 +25,7 @@ export function ModalSettings({ setModalVisible }) {
       <Card>
         <HeaderCard>
           <h2>Settings</h2>
-          
+
           <div>
             <img onClick={_ => { setModalVisible(false) }} src={closeImgURL} alt="Ícone para fechar o modal" />
             <img onClick={_ => { setModalVisible(false) }} src={closeHoverImgURL} alt="Ícone para fechar o modal" />
@@ -41,17 +39,17 @@ export function ModalSettings({ setModalVisible }) {
             <InputsMinutes>
               <div>
                 <label>pomodoro</label>
-                <input type="number" onChange={changeValueInputPomodoro} value={minutesPomodoro} />
+                <input type="number" onChange={changeValueInputPomodoro} value={minutesSections.pomodoro} />
               </div>
 
               <div>
                 <label>short break</label>
-                <input type="number" onChange={changeValueInputShortBreak} value={minutesShortBreak} />
+                <input type="number" onChange={changeValueInputShortBreak} value={minutesSections.short} />
               </div>
 
               <div>
                 <label>long break</label>
-                <input type="number" onChange={changeValueInputLongBreak} value={minutesLongBreak} />
+                <input type="number" onChange={changeValueInputLongBreak} value={minutesSections.long} />
               </div>
             </InputsMinutes>
           </ContainerMinutes>
