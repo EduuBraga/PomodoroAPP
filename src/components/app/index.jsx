@@ -4,13 +4,13 @@ import { PomodoroContext } from "../../provider/PomodoroSettings";
 import settingsImgURL from '../../assets/icons/settings.png';
 
 import { Button } from "../Button/style";
-
-import { Container, Title, Controls, Timer, BorderBackground, ContainerSettings } from "./style";
 import { CircleTimer } from "../CircleTimer";
 import { ModalSettings } from "../ModalSettings";
 
+import { Container, Title, Controls, Timer, BorderBackground, ContainerSettings } from "./style";
+
 export function App() {
-  const { changeOptionON, optionActive } = useContext(PomodoroContext);
+  const { changeOptionON, optionActive, newTimer, setNewTimer } = useContext(PomodoroContext);
   const [modalVisible, setModalVisible] = useState(false);
 
   return (

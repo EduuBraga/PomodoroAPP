@@ -4,8 +4,8 @@ import { PomodoroContext } from '../../provider/PomodoroSettings';
 
 import { Container } from './style';
 
-export function CircleTimer({timer = 25}) {
-  const { toggleStartTimer, beginTimer, str_pad_left } = useContext(PomodoroContext)
+export function CircleTimer({ timer = 1 }) {
+  const { toggleStartTimer, beginTimer, str_pad_left, toggleStatePomodoro } = useContext(PomodoroContext)
 
   const [finalTimePomodoro, setFinalTimePomodoro] = useState('25:00')
   const [finalTimeShort, setFinalTimeShort] = useState('05:00')
@@ -20,7 +20,7 @@ export function CircleTimer({timer = 25}) {
       strokeWidth={14}
       trailColor="#161932"
       onComplete={() => {
-        
+        // toggleStatePomodoro()
       }}
       onUpdate={
         (remainingTime) => {
