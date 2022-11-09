@@ -17,7 +17,8 @@ export function ModalSettings({ setModalVisible }) {
     changeValueInputPomodoro,
     changeValueInputShortBreak,
     changeValueInputLongBreak,
-    minutesSections
+    minutesSections,
+    changeValueInputs
   } = useContext(PomodoroContext);
 
   return (
@@ -39,17 +40,17 @@ export function ModalSettings({ setModalVisible }) {
             <InputsMinutes>
               <div>
                 <label>pomodoro</label>
-                <input type="number" onChange={changeValueInputPomodoro} value={minutesSections.pomodoro} />
+                <input type="number" name='pomodoro' onChange={changeValueInputs} value={minutesSections.pomodoro} />
               </div>
 
               <div>
                 <label>short break</label>
-                <input type="number" onChange={changeValueInputShortBreak} value={minutesSections.short} />
+                <input type="number" name='short' onChange={changeValueInputs} value={minutesSections.short} />
               </div>
 
               <div>
                 <label>long break</label>
-                <input type="number" onChange={changeValueInputLongBreak} value={minutesSections.long} />
+                <input type="number" name='long' onChange={changeValueInputs} value={minutesSections.long} />
               </div>
             </InputsMinutes>
           </ContainerMinutes>

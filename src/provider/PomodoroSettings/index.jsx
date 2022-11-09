@@ -53,16 +53,23 @@ export function PomodoroProvider({ children }) {
 
   // Manipulando os inputs
 
-  function changeValueInputPomodoro(event) {
-    setMinutesSections({ ...minutesSections, pomodoro: Number(event.target.value) });
-  }
+  function changeValueInputs(input) {
+    const { name, value } = input.target
 
-  function changeValueInputShortBreak(event) {
-    setMinutesSections({ ...minutesSections, short: Number(event.target.value) });
-  }
-
-  function changeValueInputLongBreak(event) {
-    setMinutesSections({ ...minutesSections, long: Number(event.target.value) });
+    switch (name) {
+      case 'pomodoro':
+        setMinutesSections({ ...minutesSections, pomodoro: parseInt(value) });
+        break;
+      case 'short':
+        setMinutesSections({ ...minutesSections, short: parseInt(value) });
+        break;
+      case 'long':
+        setMinutesSections({ ...minutesSections, long: parseInt(value) });
+        break;
+      default:
+        break;
+    }
+    console.log(minutesSections, name, value)
   }
 
 
@@ -154,6 +161,7 @@ export function PomodoroProvider({ children }) {
       changeValueInputPomodoro,
       changeValueInputShortBreak,
       changeValueInputLongBreak,
+      changeValueInputs,
       toggleStartTimer,
       beginTimer,
       minutesAndSeconds,
