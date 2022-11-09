@@ -1,10 +1,16 @@
+import { useContext } from 'react';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
+import { PomodoroContext } from '../../provider/PomodoroSettings';
 
-export function CircleTimer({timer = 60, begin = false}) {
+import { Container } from './style';
+
+export function CircleTimer({ timer = 60, begin = false }) {
+  const { toggleStartTimer, beginTimer } = useContext(PomodoroContext)
+
   return (
     <CountdownCircleTimer
       size={'339'}
-      isPlaying={begin}
+      isPlaying={beginTimer}
       duration={60}
       colors={['#F87070']}
       strokeWidth={14}
@@ -12,7 +18,11 @@ export function CircleTimer({timer = 60, begin = false}) {
       onComplete={() => {
       }}
     >
-      {({ remainingTime }) => <h1>{remainingTime}</h1>}
+      {({ remainingTime }) =>
+        <Container>
+          <h1>{remainingTime}</h1>
+          {beginTimer ? (<h3 onClick={toggleStartTimer}>pause</h3>) : (<h3 onClick={toggleStartTimer}>start</h3>)}
+        </Container>}
     </CountdownCircleTimer>
   );
 };

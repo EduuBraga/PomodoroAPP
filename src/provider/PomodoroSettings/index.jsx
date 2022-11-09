@@ -3,6 +3,8 @@ import React, { createContext, useState } from "react";
 export const PomodoroContext = createContext();
 
 export function PomodoroProvider({ children }) {
+  // Manipulando as opções de cor, fonte e de parte do pomodoro
+
   const [optionActive, setOptionActive] = useState('option0');
   const [optionColor, setOptionColor] = useState('option_color0');
   const [optionText, setOptionText] = useState('option_text0');
@@ -40,6 +42,8 @@ export function PomodoroProvider({ children }) {
     });
   };
 
+  // Manipulando os inputs
+
   const [minutesPomodoro, setMinutesPomodoro] = useState(25);
   const [minutesShortBreak, setMinutesShortBreak] = useState(5);
   const [minutesLongBreak, setMinutesLongBreak] = useState(15);
@@ -56,6 +60,16 @@ export function PomodoroProvider({ children }) {
     setMinutesLongBreak(Number(event.target.value));
   };
 
+  // Manipulando o Pomodoro
+
+  const [pomodoro, setPomodoro] = useState(0)
+  const [executing, setExecuting] = useState({})
+  const [beginTimer, setBeginTimer] = useState(false)
+
+  function toggleStartTimer(){
+    beginTimer ? setBeginTimer(false) : setBeginTimer(true)
+  }
+
   return (
     <PomodoroContext.Provider value={{
       changeOptionON,
@@ -69,7 +83,9 @@ export function PomodoroProvider({ children }) {
       minutesLongBreak,
       changeValueInputPomodoro,
       changeValueInputShortBreak,
-      changeValueInputLongBreak
+      changeValueInputLongBreak,
+      toggleStartTimer,
+      beginTimer
     }}>
       {children}
     </PomodoroContext.Provider>
