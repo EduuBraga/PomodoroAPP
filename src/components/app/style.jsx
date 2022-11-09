@@ -14,6 +14,7 @@ export const Title = styled.h1`
   text-align: center;
   letter-spacing: normal;
   margin: 48px 0px 10px 0px;
+  font-family: 'Kumbh Sans', sans-serif !important;
 `
 
 export const Controls = styled.div`
@@ -82,5 +83,11 @@ export const ContainerSettings = styled.section`
 
   img{
     width: 28px;
+    z-index: 15;
+    cursor: pointer;
+
+    &:active{
+      transform: scale(0.97);
+    }
   }
 `
