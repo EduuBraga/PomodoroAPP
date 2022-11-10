@@ -1,6 +1,8 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 import { PomodoroContext } from '../../provider/PomodoroSettings';
+
+import complete_task from '../../assets/audio/complete_task.mp3'
 
 import { Container, Button } from './style';
 
@@ -18,18 +20,24 @@ export function CircleTimer() {
   } = useContext(PomodoroContext);
 
   const [finalTimePomodoro, setFinalTimePomodoro] = useState(null);
+  const audioCompleteTask = useRef(null)
+
 
   return (
     <CountdownCircleTimer
       key={keyPomodoro}
       size={'339'}
       isPlaying={beginTimer}
-      duration={timerCurrent * 60}
+      duration={timerCurrent}
       colors={[theme.color]}
       strokeWidth={11}
       trailColor="#161932"
       onComplete={() => {
-        toggleStatePomodoro();
+        audioCompleteTask.current.play()
+
+        setTimeout(()=>{
+          toggleStatePomodoro();
+        }, 1500);
       }}
       onUpdate={
         (remainingTime) => {
@@ -51,7 +59,7 @@ export function CircleTimer() {
           ) : (
             beginTimer ? (<Button onClick={toggleStartTimer}>pause</Button>) : (<Button onClick={toggleStartTimer}>start</Button>)
           )}
-
+          <audio preload="auto" ref={audioCompleteTask} src={complete_task}></audio>
         </Container>
       }
     </CountdownCircleTimer>
