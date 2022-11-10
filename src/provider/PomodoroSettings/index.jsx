@@ -197,6 +197,7 @@ export function PomodoroProvider({ children }) {
   }
 
   function ApplyChangeInputs(){
+    setSectionsPomodoro({ ...sectionsPomodoro, pomodoro: 4, short: 3, long: 1 });
     setMinutesSections({...minutesSections, pomodoro: minutesPomodoro, short: minutesShort, long: minutesLong});
     toggleTheme()
     toggleFonts()
