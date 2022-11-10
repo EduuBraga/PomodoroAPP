@@ -11,7 +11,9 @@ export function CircleTimer() {
     minutesAndSeconds,
     toggleStatePomodoro,
     timer,
-    keyPomodoro
+    keyPomodoro,
+    finished,
+    RestartPomodoro
   } = useContext(PomodoroContext);
 
   const [finalTimePomodoro, setFinalTimePomodoro] = useState(null);
@@ -42,7 +44,12 @@ export function CircleTimer() {
       {() =>
         <Container>
           <h1>{finalTimePomodoro}</h1>
-          {beginTimer ? (<Button onClick={toggleStartTimer}>pause</Button>) : (<Button onClick={toggleStartTimer}>start</Button>)}
+          {finished ? (
+            <Button onClick={RestartPomodoro}>Restart</Button>
+          ) : (
+            beginTimer ? (<Button onClick={toggleStartTimer}>pause</Button>) : (<Button onClick={toggleStartTimer}>start</Button>)
+          )}
+
         </Container>
       }
     </CountdownCircleTimer>

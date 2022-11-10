@@ -17,6 +17,7 @@ export function PomodoroProvider({ children }) {
   const [executing, setExecuting] = useState('pomodoro');
   const [keyPomodoro, setKeyPomodoro] = useState(1);
   const [beginTimer, setBeginTimer] = useState(false);
+  const [finished, setFinished] = useState(false)
 
 
   // Manipulando as opções de cor, fonte e de sessão do pomodoro.
@@ -125,8 +126,7 @@ export function PomodoroProvider({ children }) {
       changeSectionLong()
     }
     else {
-      setNewTimer({ ...newTimer, pomodoro: 4, short: 3, long: 1 });
-      changeSectionPomodoro()
+      setFinished(true)
     }
   }
 
@@ -154,6 +154,15 @@ export function PomodoroProvider({ children }) {
 
   function ApplyChangeInputs(){
     setMinutesSections({...minutesSections, pomodoro: minutesPomodoro, short: minutesShort, long: minutesLong})
+  }
+
+  function RestartPomodoro(){
+    setNewTimer({ ...newTimer, pomodoro: 4, short: 3, long: 1 });
+    setTimer(minutesSections.pomodoro)
+    setKeyPomodoro(prevState => prevState + 1)
+    setOptionActive('option0')
+    setExecuting('pomodoro')
+    setBeginTimer(true)
   }
 
   useEffect(()=>{
@@ -186,7 +195,9 @@ export function PomodoroProvider({ children }) {
       minutesPomodoro,
       minutesShort,
       minutesLong,
-      ApplyChangeInputs
+      ApplyChangeInputs,
+      finished,
+      RestartPomodoro
     }}>
       {children}
     </PomodoroContext.Provider>
