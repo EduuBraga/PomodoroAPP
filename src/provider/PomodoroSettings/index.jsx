@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useCallback, useEffect, useState } from "react";
 
 export const PomodoroContext = createContext();
 
@@ -7,10 +7,14 @@ export function PomodoroProvider({ children }) {
   const [optionColor, setOptionColor] = useState('option_color0');
   const [optionText, setOptionText] = useState('option_text0');
 
-  const [newTimer, setNewTimer] = useState({ pomodoro: 4, short: 3, long: 1 })
+  const [minutesPomodoro, setMinutesPomodoro] = useState(25)
+  const [minutesShort, setMinutesShort] = useState(5)
+  const [minutesLong, setMinutesLong] = useState(15)
+
   const [minutesSections, setMinutesSections] = useState({ pomodoro: 25, short: 5, long: 15 })
-  const [executing, setExecuting] = useState('pomodoro');
+  const [newTimer, setNewTimer] = useState({ pomodoro: 4, short: 3, long: 1 })
   const [timer, setTimer] = useState(minutesSections.pomodoro);
+  const [executing, setExecuting] = useState('pomodoro');
   const [keyPomodoro, setKeyPomodoro] = useState(1);
   const [beginTimer, setBeginTimer] = useState(false);
 
@@ -58,20 +62,18 @@ export function PomodoroProvider({ children }) {
 
     switch (name) {
       case 'pomodoro':
-        setMinutesSections({ ...minutesSections, pomodoro: parseInt(value) });
+        setMinutesPomodoro(parseInt(value));
         break;
       case 'short':
-        setMinutesSections({ ...minutesSections, short: parseInt(value) });
+        setMinutesShort(parseInt(value));
         break;
       case 'long':
-        setMinutesSections({ ...minutesSections, long: parseInt(value) });
+        setMinutesLong(parseInt(value));
         break;
       default:
         break;
     }
-    console.log(minutesSections, name, value)
   }
-
 
   // Manipulando o Pomodoro
 
@@ -150,6 +152,18 @@ export function PomodoroProvider({ children }) {
     }
   }
 
+  function ApplyChangeInputs(){
+    setMinutesSections({...minutesSections, pomodoro: minutesPomodoro, short: minutesShort, long: minutesLong})
+  }
+
+  useEffect(()=>{
+    changeSectionPomodoro()
+  }, [minutesSections])
+
+  useEffect(()=>{
+    console.log(newTimer)
+  }, [newTimer])
+
   return (
     <PomodoroContext.Provider value={{
       changeOptionON,
@@ -158,9 +172,6 @@ export function PomodoroProvider({ children }) {
       optionColor,
       changeOptionTextON,
       optionText,
-      changeValueInputPomodoro,
-      changeValueInputShortBreak,
-      changeValueInputLongBreak,
       changeValueInputs,
       toggleStartTimer,
       beginTimer,
@@ -171,7 +182,11 @@ export function PomodoroProvider({ children }) {
       executing,
       timer,
       keyPomodoro,
-      minutesSections
+      minutesSections,
+      minutesPomodoro,
+      minutesShort,
+      minutesLong,
+      ApplyChangeInputs
     }}>
       {children}
     </PomodoroContext.Provider>

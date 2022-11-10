@@ -5,8 +5,9 @@ import closeImgURL from '../../assets/icons/close.png';
 import closeHoverImgURL from '../../assets/icons/close_hover.png';
 import checkImgURL from '../../assets/icons/check.png';
 
-import { Container, Card, HeaderCard, ContentCard, ContainerMinutes, InputsMinutes, ContainerFonts, ContainerColors } from "./style";
 import { Button } from "../Button/style";
+
+import { Container, Card, HeaderCard, ContentCard, ContainerMinutes, InputsMinutes, ContainerFonts, ContainerColors } from "./style";
 
 export function ModalSettings({ setModalVisible }) {
   const {
@@ -14,11 +15,11 @@ export function ModalSettings({ setModalVisible }) {
     changeOptionTextON,
     optionText,
     optionColor,
-    changeValueInputPomodoro,
-    changeValueInputShortBreak,
-    changeValueInputLongBreak,
-    minutesSections,
-    changeValueInputs
+    changeValueInputs,
+    minutesPomodoro,
+    minutesShort,
+    minutesLong,
+    ApplyChangeInputs
   } = useContext(PomodoroContext);
 
   return (
@@ -40,17 +41,17 @@ export function ModalSettings({ setModalVisible }) {
             <InputsMinutes>
               <div>
                 <label>pomodoro</label>
-                <input type="number" name='pomodoro' onChange={changeValueInputs} value={minutesSections.pomodoro} />
+                <input type="number" name='pomodoro' onChange={changeValueInputs} value={minutesPomodoro} />
               </div>
 
               <div>
                 <label>short break</label>
-                <input type="number" name='short' onChange={changeValueInputs} value={minutesSections.short} />
+                <input type="number" name='short' onChange={changeValueInputs} value={minutesShort} />
               </div>
 
               <div>
                 <label>long break</label>
-                <input type="number" name='long' onChange={changeValueInputs} value={minutesSections.long} />
+                <input type="number" name='long' onChange={changeValueInputs} value={minutesLong} />
               </div>
             </InputsMinutes>
           </ContainerMinutes>
@@ -84,7 +85,7 @@ export function ModalSettings({ setModalVisible }) {
           </ContainerColors>
         </ContentCard>
 
-        <Button>Aplly</Button>
+        <Button onClick={ApplyChangeInputs}>Aplly</Button>
       </Card>
     </Container>
   );
