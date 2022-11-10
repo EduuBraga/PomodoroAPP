@@ -1,6 +1,15 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const opacityAnimation = keyframes`
+  0%{
+    opacity: 0;
+  }100%{
+    opacity: 1;
+  }
+`
 
 export const Container = styled.div`
+  animation: ${opacityAnimation} 0.3s ease-in-out;
   background-color: #0A0C1C80;
   position: fixed;
   top: 0; right: 0; bottom: 0; left: 0;
@@ -13,6 +22,7 @@ export const Container = styled.div`
 `
 
 export const Card = styled.section`
+  animation: ${opacityAnimation} 0.3s ease-in-out;
   background-color: #fff;
   width: 540px;
   height: 464px;
