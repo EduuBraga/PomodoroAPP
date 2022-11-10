@@ -10,7 +10,7 @@ export function PomodoroProvider({ children }) {
   const [optionColor, setOptionColor] = useState('option_color0');
   const [optionText, setOptionText] = useState('option_text0');
   const [theme, setTheme] = useState(themeRed);
-  const [font, setFont] = useState(themeRed);
+  const [font, setFont] = useState(font1);
 
   const [minutesPomodoro, setMinutesPomodoro] = useState(25);
   const [minutesShort, setMinutesShort] = useState(5);
@@ -47,7 +47,7 @@ export function PomodoroProvider({ children }) {
   //Manipulando fonts
 
   function toggleFonts(){
-    switch (optionColor) {
+    switch (optionText) {
       case 'option_text0':
         setFont(font1)
         break;
@@ -241,7 +241,8 @@ export function PomodoroProvider({ children }) {
       ApplyChangeInputs,
       finished,
       RestartPomodoro,
-      theme
+      theme,
+      font
     }}>
       {children}
     </PomodoroContext.Provider>

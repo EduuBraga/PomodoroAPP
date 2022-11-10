@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { ThemeProvider } from "styled-components";
 import { PomodoroContext } from "../../provider/PomodoroSettings";
+import { GlobalStyles } from '../../styles/globalStyles/style';
 
 import settingsImgURL from '../../assets/icons/settings.png';
 
@@ -15,7 +16,8 @@ export function App() {
     changeOptionON,
     optionActive,
     toggleSectionPomodoro,
-    theme
+    theme,
+    font
   } = useContext(PomodoroContext);
 
   const [modalVisible, setModalVisible] = useState(false);
@@ -48,6 +50,7 @@ export function App() {
 
         {modalVisible && <ModalSettings setModalVisible={setModalVisible} />}
       </Container>
+      <GlobalStyles fonts={font} />
     </ThemeProvider>
   );
 }

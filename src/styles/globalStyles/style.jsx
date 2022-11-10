@@ -10,9 +10,7 @@ export const GlobalStyles = createGlobalStyle`
     padding: 0px;
     box-sizing: border-box;
     outline: none;
-    font-family: 'Kumbh Sans', sans-serif;
-    /* font-family: 'Roboto Slab', serif; */
-    /* font-family: 'Space Mono', monospace; */
+    font-family: ${props => props.fonts.font};
   }
 
   body{
