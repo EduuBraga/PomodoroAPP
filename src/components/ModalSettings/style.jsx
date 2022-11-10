@@ -35,6 +35,10 @@ export const Card = styled.section`
   button{
     position: absolute;
     bottom: -28px;
+  
+    &:active{
+      transform: scale(0.96);
+    }
   }
 `
 
