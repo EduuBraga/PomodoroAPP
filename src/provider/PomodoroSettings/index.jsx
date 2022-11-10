@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 
 import { themeRed, themeBlue, themePink } from "../../styles/themes";
+import { font1, font2, font3 } from "../../styles/fonts";
 
 export const PomodoroContext = createContext();
 
@@ -9,6 +10,7 @@ export function PomodoroProvider({ children }) {
   const [optionColor, setOptionColor] = useState('option_color0');
   const [optionText, setOptionText] = useState('option_text0');
   const [theme, setTheme] = useState(themeRed);
+  const [font, setFont] = useState(themeRed);
 
   const [minutesPomodoro, setMinutesPomodoro] = useState(25);
   const [minutesShort, setMinutesShort] = useState(5);
@@ -35,6 +37,25 @@ export function PomodoroProvider({ children }) {
         break;
       case 'option_color2':
         setTheme(themePink)
+        break;
+      default:
+        break;
+    }
+  }
+
+  
+  //Manipulando fonts
+
+  function toggleFonts(){
+    switch (optionColor) {
+      case 'option_text0':
+        setFont(font1)
+        break;
+      case 'option_text1':
+        setFont(font2)
+        break;
+      case 'option_text2':
+        setFont(font3)
         break;
       default:
         break;
@@ -79,6 +100,10 @@ export function PomodoroProvider({ children }) {
       }
     });
   }
+
+  useEffect(()=>{
+    toggleFonts();
+  }, [optionText]);
 
 
   // Manipulando os inputs
