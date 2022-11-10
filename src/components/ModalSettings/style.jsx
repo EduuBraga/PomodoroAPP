@@ -21,7 +21,6 @@ export const Card = styled.section`
   flex-direction: column;
   align-items: center;
   position: relative;
-  font-family: 'Kumbh Sans', sans-serif !important;
 
   button{
     position: absolute;
@@ -34,7 +33,7 @@ export const HeaderCard = styled.header`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  font-family: 'Kumbh Sans', sans-serif !important;
+  
 
   padding: 32px 40px;
   border-bottom: 1px solid #E3E1E1;
@@ -84,7 +83,7 @@ export const ContainerMinutes = styled.div`
   gap: 24px;
   padding-bottom: 24px;
   border-bottom: 1px solid #E3E1E1;
-  font-family: 'Kumbh Sans', sans-serif !important;
+  
 `
 
 
@@ -96,7 +95,7 @@ export const InputsMinutes = styled.div`
     display: flex;
     flex-direction: column; 
     gap: 8px;
-    font-family: 'Kumbh Sans', sans-serif !important;
+    
     
     label{
       font-weight: 700;
@@ -126,7 +125,7 @@ export const ContainerFonts = styled.div`
   align-items: center;
   padding: 24px 0px 24px 0px;
   border-bottom: 1px solid #E3E1E1;
-  font-family: 'Kumbh Sans', sans-serif !important;
+  
 
   div{
     display: flex;
@@ -150,7 +149,7 @@ export const ContainerFonts = styled.div`
     div:nth-child(2){
       background-color: ${props => props.isCheck === 'option_text1' ? '#000000' : '#EFF1FA'};
       color: ${props => props.isCheck === 'option_text1' ? '#ffffff' : '#1E213F'};
-      font-family: 'Roboto Slab', serif !important
+      font-family: 'Roboto Slab', serif !important;
     }
 
     div:nth-child(3){
@@ -166,7 +165,7 @@ export const ContainerColors = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 24px 0px 24px 0px;
-  font-family: 'Kumbh Sans', sans-serif !important;
+  
 
   div{
     display: flex;
