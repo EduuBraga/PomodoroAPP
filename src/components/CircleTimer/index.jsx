@@ -28,7 +28,7 @@ export function CircleTimer() {
       strokeWidth={11}
       trailColor="#161932"
       onComplete={() => {
-        toggleStatePomodoro()
+        toggleStatePomodoro();
       }}
       onUpdate={
         (remainingTime) => {
@@ -37,12 +37,13 @@ export function CircleTimer() {
 
           let finalTime = minutesAndSeconds(minutes, '0', 2) + ':' + minutesAndSeconds(seconds, '0', 2);
 
-          setFinalTimePomodoro(finalTime)
+          setFinalTimePomodoro(finalTime);
         }
       }
     >
       {() =>
         <Container>
+
           <h1>{finalTimePomodoro}</h1>
           {finished ? (
             <Button onClick={RestartPomodoro}>Restart</Button>
@@ -54,4 +55,4 @@ export function CircleTimer() {
       }
     </CountdownCircleTimer>
   );
-};
+}

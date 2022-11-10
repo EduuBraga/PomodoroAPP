@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { PomodoroContext } from "../../provider/PomodoroSettings";
 
 import settingsImgURL from '../../assets/icons/settings.png';
@@ -19,8 +19,8 @@ export function App() {
   const [modalVisible, setModalVisible] = useState(false);
 
   function handleClickOptions(e) {
-    changeOptionON(e)
-    toggleSectionPomodoro(e)
+    changeOptionON(e);
+    toggleSectionPomodoro(e);
   }
 
   return (
@@ -46,4 +46,4 @@ export function App() {
       {modalVisible && <ModalSettings setModalVisible={setModalVisible} />}
     </Container>
   );
-};
+}

@@ -89,4 +89,4 @@ export function ModalSettings({ setModalVisible }) {
       </Card>
     </Container>
   );
-};
+}
