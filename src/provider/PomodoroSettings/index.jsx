@@ -209,6 +209,7 @@ export function PomodoroProvider({ children }) {
     setOptionSectionON('section0');
     setExecuting('pomodoro');
     setBeginTimer(true);
+    setFinished(false)
   }
 
   useEffect(()=>{
