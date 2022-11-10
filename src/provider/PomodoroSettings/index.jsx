@@ -25,8 +25,28 @@ export function PomodoroProvider({ children }) {
   const [keyPomodoro, setKeyPomodoro] = useState(1);
   const [beginTimer, setBeginTimer] = useState(false);
   const [finished, setFinished] = useState(false);
-
   
+  useEffect(()=>{
+    let configsSalved = JSON.parse(localStorage.getItem('configs'))
+
+    if(configsSalved !== null){
+      setMinutesPomodoro(configsSalved.minutesPomodoro)
+      setMinutesShort(configsSalved.minutesShort)
+      setMinutesLong(configsSalved.minutesLong)
+      setMinutesSections(configsSalved.minutesSections)
+      setFont(configsSalved.font)
+      setTheme(configsSalved.theme)
+      setOptionColorON(configsSalved.optionColorON)
+      setOptionTextON(configsSalved.optionTextON)
+    }
+  }, [])
+
+  useEffect(()=>{
+    let salveConfig = {font, theme, minutesSections, minutesPomodoro, minutesShort, minutesLong, optionColorON, optionTextON}
+
+    localStorage.setItem('configs', JSON.stringify(salveConfig))
+  }, [font, theme, minutesSections, minutesPomodoro, minutesShort, minutesLong, optionColorON, optionTextON])
+
   //Trocando fonte e tema.
 
   function toggleTheme(){
