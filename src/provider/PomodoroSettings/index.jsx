@@ -1,11 +1,14 @@
 import React, { createContext, useEffect, useState } from "react";
 
+import { themeRed, themeBlue, themePink } from "../../styles/themes";
+
 export const PomodoroContext = createContext();
 
 export function PomodoroProvider({ children }) {
   const [optionActive, setOptionActive] = useState('option0');
   const [optionColor, setOptionColor] = useState('option_color0');
   const [optionText, setOptionText] = useState('option_text0');
+  const [theme, setTheme] = useState(themeRed);
 
   const [minutesPomodoro, setMinutesPomodoro] = useState(25);
   const [minutesShort, setMinutesShort] = useState(5);
@@ -19,6 +22,24 @@ export function PomodoroProvider({ children }) {
   const [beginTimer, setBeginTimer] = useState(false);
   const [finished, setFinished] = useState(false);
 
+  
+  //Manipulando temas
+
+  function toggleTheme(){
+    switch (optionColor) {
+      case 'option_color0':
+        setTheme(themeRed)
+        break;
+      case 'option_color1':
+        setTheme(themeBlue)
+        break;
+      case 'option_color2':
+        setTheme(themePink)
+        break;
+      default:
+        break;
+    }
+  }
 
   // Manipulando as opções de cor, fonte e de sessão do pomodoro.
 
@@ -43,6 +64,10 @@ export function PomodoroProvider({ children }) {
       }
     });
   }
+
+  useEffect(()=>{
+    toggleTheme();
+  }, [optionColor]);
 
   function changeOptionTextON(event) {
     const optionsTexts = document.querySelectorAll('.options_text');
@@ -190,7 +215,8 @@ export function PomodoroProvider({ children }) {
       minutesLong,
       ApplyChangeInputs,
       finished,
-      RestartPomodoro
+      RestartPomodoro,
+      theme
     }}>
       {children}
     </PomodoroContext.Provider>
