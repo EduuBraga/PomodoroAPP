@@ -10,7 +10,7 @@ export function CircleTimer() {
     beginTimer,
     minutesAndSeconds,
     toggleStatePomodoro,
-    timer,
+    timerCurrent,
     keyPomodoro,
     finished,
     RestartPomodoro,
@@ -24,7 +24,7 @@ export function CircleTimer() {
       key={keyPomodoro}
       size={'339'}
       isPlaying={beginTimer}
-      duration={timer * 60}
+      duration={timerCurrent * 60}
       colors={[theme.color]}
       strokeWidth={11}
       trailColor="#161932"

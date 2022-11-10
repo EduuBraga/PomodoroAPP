@@ -11,14 +11,16 @@ export function PomodoroProvider({ children }) {
   const [optionText, setOptionText] = useState('option_text0');
   const [theme, setTheme] = useState(themeRed);
   const [font, setFont] = useState(font1);
+  const [priorTheme, setPriorTheme] = useState(null);
+  const [priorFont, setPriorFont] = useState(null);
 
   const [minutesPomodoro, setMinutesPomodoro] = useState(25);
   const [minutesShort, setMinutesShort] = useState(5);
   const [minutesLong, setMinutesLong] = useState(15);
 
   const [minutesSections, setMinutesSections] = useState({ pomodoro: 25, short: 5, long: 15 })
-  const [newTimer, setNewTimer] = useState({ pomodoro: 4, short: 3, long: 1 })
-  const [timer, setTimer] = useState(minutesSections.pomodoro);
+  const [sectionsPomodoro, setSectionsPomodoro] = useState({ pomodoro: 4, short: 3, long: 1 })
+  const [timerCurrent, setTimerCurrent] = useState(minutesSections.pomodoro);
   const [executing, setExecuting] = useState('pomodoro');
   const [keyPomodoro, setKeyPomodoro] = useState(1);
   const [beginTimer, setBeginTimer] = useState(false);
@@ -28,14 +30,14 @@ export function PomodoroProvider({ children }) {
   //Manipulando temas
 
   function toggleTheme(){
-    switch (optionColor) {
-      case 'option_color0':
+    switch (priorTheme) {
+      case 'theme0':
         setTheme(themeRed)
         break;
-      case 'option_color1':
+      case 'theme1':
         setTheme(themeBlue)
         break;
-      case 'option_color2':
+      case 'theme2':
         setTheme(themePink)
         break;
       default:
@@ -47,20 +49,21 @@ export function PomodoroProvider({ children }) {
   //Manipulando fonts
 
   function toggleFonts(){
-    switch (optionText) {
-      case 'option_text0':
+    switch (priorFont) {
+      case 'font0':
         setFont(font1)
         break;
-      case 'option_text1':
+      case 'font1':
         setFont(font2)
         break;
-      case 'option_text2':
+      case 'font2':
         setFont(font3)
         break;
       default:
         break;
     }
   }
+
 
   // Manipulando as opções de cor, fonte e de sessão do pomodoro.
 
@@ -82,13 +85,10 @@ export function PomodoroProvider({ children }) {
     optionsColors.forEach((option, index) => {
       if (option === optionClicked) {
         setOptionColor(`option_color${index}`);
+        setPriorTheme(`theme${index}`)
       }
     });
   }
-
-  useEffect(()=>{
-    toggleTheme();
-  }, [optionColor]);
 
   function changeOptionTextON(event) {
     const optionsTexts = document.querySelectorAll('.options_text');
@@ -97,13 +97,10 @@ export function PomodoroProvider({ children }) {
     optionsTexts.forEach((option, index) => {
       if (option === optionClicked) {
         setOptionText(`option_text${index}`);
+        setPriorFont(`font${index}`)
       }
     });
   }
-
-  useEffect(()=>{
-    toggleFonts();
-  }, [optionText]);
 
 
   // Manipulando os inputs
@@ -138,41 +135,41 @@ export function PomodoroProvider({ children }) {
 
   function changeSectionPomodoro() {
     setKeyPomodoro(prevState => prevState + 1);
-    setTimer(minutesSections.pomodoro);
+    setTimerCurrent(minutesSections.pomodoro);
     setOptionActive('option0');
     setExecuting('pomodoro');
     setBeginTimer(false);
   }
   function changeSectionShort() {
     setKeyPomodoro(prevState => prevState + 1);
-    setTimer(minutesSections.short);
+    setTimerCurrent(minutesSections.short);
     setOptionActive('option1');
     setExecuting('short');
     setBeginTimer(false);
   }
   function changeSectionLong() {
     setKeyPomodoro(prevState => prevState + 1);
-    setTimer(minutesSections.long);
+    setTimerCurrent(minutesSections.long);
     setOptionActive('option2');
     setExecuting('long');
     setBeginTimer(false);
   }
 
   function toggleStatePomodoro() {
-    let pomodoroTotal = newTimer.pomodoro;
-    let shortTotal = newTimer.short;
-    let longTotal = newTimer.long;
+    let pomodoroTotal = sectionsPomodoro.pomodoro;
+    let shortTotal = sectionsPomodoro.short;
+    let longTotal = sectionsPomodoro.long;
 
     if (executing === 'pomodoro' && pomodoroTotal - 1 !== 0) {
-      setNewTimer({ ...newTimer, pomodoro: Number(`${newTimer.pomodoro - 1}`) });
+      setSectionsPomodoro({ ...sectionsPomodoro, pomodoro: Number(`${sectionsPomodoro.pomodoro - 1}`) });
       changeSectionShort();
     }
     else if (executing === 'short' && shortTotal !== 0) {
-      setNewTimer({ ...newTimer, short: Number(`${newTimer.short - 1}`) });
+      setSectionsPomodoro({ ...sectionsPomodoro, short: Number(`${sectionsPomodoro.short - 1}`) });
       changeSectionPomodoro();
     }
     else if (shortTotal === 0 && pomodoroTotal === 1 && longTotal === 1) {
-      setNewTimer({ ...newTimer, long: Number(`${parseInt(newTimer.long - 1)}`) });
+      setSectionsPomodoro({ ...sectionsPomodoro, long: Number(`${parseInt(sectionsPomodoro.long - 1)}`) });
       changeSectionLong();
     }
     else {
@@ -204,11 +201,13 @@ export function PomodoroProvider({ children }) {
 
   function ApplyChangeInputs(){
     setMinutesSections({...minutesSections, pomodoro: minutesPomodoro, short: minutesShort, long: minutesLong});
+    toggleTheme()
+    toggleFonts()
   }
 
   function RestartPomodoro(){
-    setNewTimer({ ...newTimer, pomodoro: 4, short: 3, long: 1 });
-    setTimer(minutesSections.pomodoro);
+    setSectionsPomodoro({ ...sectionsPomodoro, pomodoro: 4, short: 3, long: 1 });
+    setTimerCurrent(minutesSections.pomodoro);
     setKeyPomodoro(prevState => prevState + 1);
     setOptionActive('option0');
     setExecuting('pomodoro');
@@ -232,7 +231,7 @@ export function PomodoroProvider({ children }) {
       minutesAndSeconds,
       toggleStatePomodoro,
       toggleSectionPomodoro,
-      timer,
+      timerCurrent,
       keyPomodoro,
       changeValueInputs,
       minutesPomodoro,
