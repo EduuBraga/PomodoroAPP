@@ -13,8 +13,8 @@ import { Container, Title, Controls, Timer, BorderBackground, ContainerSettings 
 
 export function App() {
   const {
-    changeOptionON,
-    optionActive,
+    changeSectionON,
+    optionSectionON,
     toggleSectionPomodoro,
     theme,
     font
@@ -22,8 +22,8 @@ export function App() {
 
   const [modalVisible, setModalVisible] = useState(false);
 
-  function handleClickOptions(e) {
-    changeOptionON(e);
+  function handleClickSections(e) {
+    changeSectionON(e);
     toggleSectionPomodoro(e);
   }
 
@@ -32,10 +32,10 @@ export function App() {
       <Container>
         <Title>Pomodoro</Title>
 
-        <Controls isActive={optionActive}>
-          <Button className="options" name="pomodoro" onClick={handleClickOptions}>pomodoro</Button>
-          <Button className="options" name="short" onClick={handleClickOptions}>short break</Button>
-          <Button className="options" name="long" onClick={handleClickOptions}>long break</Button>
+        <Controls isActive={optionSectionON}>
+          <Button className="options" name="pomodoro" onClick={handleClickSections}>pomodoro</Button>
+          <Button className="options" name="short" onClick={handleClickSections}>short break</Button>
+          <Button className="options" name="long" onClick={handleClickSections}>long break</Button>
         </Controls>
 
         <Timer>

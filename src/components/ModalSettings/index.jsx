@@ -13,8 +13,8 @@ export function ModalSettings({ setModalVisible }) {
   const {
     changeOptionColorON,
     changeOptionTextON,
-    optionText,
-    optionColor,
+    optionTextON,
+    optionColorON,
     changeValueInputs,
     minutesPomodoro,
     minutesShort,
@@ -56,7 +56,7 @@ export function ModalSettings({ setModalVisible }) {
             </InputsMinutes>
           </ContainerMinutes>
 
-          <ContainerFonts isCheck={optionText}>
+          <ContainerFonts isCheck={optionTextON}>
             <h4>FONT</h4>
 
             <div>
@@ -66,20 +66,20 @@ export function ModalSettings({ setModalVisible }) {
             </div>
           </ContainerFonts>
 
-          <ContainerColors isCheck={optionColor}>
+          <ContainerColors isCheck={optionColorON}>
             <h4>COLOR</h4>
 
             <div>
               <span onClick={changeOptionColorON} className="options_colors">
-                {optionColor === 'option_color0' && <img src={checkImgURL} alt="Ícone de check" />}
+                {optionColorON === 'option_color0' && <img src={checkImgURL} alt="Ícone de check" />}
               </span>
 
               <span onClick={changeOptionColorON} className="options_colors">
-                {optionColor === 'option_color1' && <img src={checkImgURL} alt="Ícone de check" />}
+                {optionColorON === 'option_color1' && <img src={checkImgURL} alt="Ícone de check" />}
               </span>
 
               <span onClick={changeOptionColorON} className="options_colors">
-                {optionColor === 'option_color2' && <img src={checkImgURL} alt="Ícone de check" />}
+                {optionColorON === 'option_color2' && <img src={checkImgURL} alt="Ícone de check" />}
               </span>
             </div>
           </ContainerColors>

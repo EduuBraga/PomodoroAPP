@@ -6,9 +6,9 @@ import { font1, font2, font3 } from "../../styles/fonts";
 export const PomodoroContext = createContext();
 
 export function PomodoroProvider({ children }) {
-  const [optionActive, setOptionActive] = useState('option0');
-  const [optionColor, setOptionColor] = useState('option_color0');
-  const [optionText, setOptionText] = useState('option_text0');
+  const [optionSectionON, setOptionSectionON] = useState('section0');
+  const [optionColorON, setOptionColorON] = useState('option_color0');
+  const [optionTextON, setOptionTextON] = useState('option_text0');
   const [theme, setTheme] = useState(themeRed);
   const [font, setFont] = useState(font1);
   const [priorTheme, setPriorTheme] = useState(null);
@@ -27,37 +27,34 @@ export function PomodoroProvider({ children }) {
   const [finished, setFinished] = useState(false);
 
   
-  //Manipulando temas
+  //Trocando fonte e tema.
 
   function toggleTheme(){
     switch (priorTheme) {
       case 'theme0':
-        setTheme(themeRed)
+        setTheme(themeRed);
         break;
       case 'theme1':
-        setTheme(themeBlue)
+        setTheme(themeBlue);
         break;
       case 'theme2':
-        setTheme(themePink)
+        setTheme(themePink);
         break;
       default:
         break;
     }
   }
 
-  
-  //Manipulando fonts
-
   function toggleFonts(){
     switch (priorFont) {
       case 'font0':
-        setFont(font1)
+        setFont(font1);
         break;
       case 'font1':
-        setFont(font2)
+        setFont(font2);
         break;
       case 'font2':
-        setFont(font3)
+        setFont(font3);
         break;
       default:
         break;
@@ -67,13 +64,13 @@ export function PomodoroProvider({ children }) {
 
   // Manipulando as opções de cor, fonte e de sessão do pomodoro.
 
-  function changeOptionON(event) {
+  function changeSectionON(event) {
     const options = document.querySelectorAll('.options');
     let optionClicked = event.target;
 
     options.forEach((option, index) => {
       if (option === optionClicked) {
-        setOptionActive(`option${index}`);
+        setOptionSectionON(`section${index}`);
       }
     });
   }
@@ -84,7 +81,7 @@ export function PomodoroProvider({ children }) {
 
     optionsColors.forEach((option, index) => {
       if (option === optionClicked) {
-        setOptionColor(`option_color${index}`);
+        setOptionColorON(`option_color${index}`);
         setPriorTheme(`theme${index}`)
       }
     });
@@ -96,14 +93,14 @@ export function PomodoroProvider({ children }) {
 
     optionsTexts.forEach((option, index) => {
       if (option === optionClicked) {
-        setOptionText(`option_text${index}`);
+        setOptionTextON(`option_text${index}`);
         setPriorFont(`font${index}`)
       }
     });
   }
 
 
-  // Manipulando os inputs
+  // Manipulando os inputs com os valores dos minutos
 
   function changeValueInputs(input) {
     const { name, value } = input.target;
@@ -136,21 +133,21 @@ export function PomodoroProvider({ children }) {
   function changeSectionPomodoro() {
     setKeyPomodoro(prevState => prevState + 1);
     setTimerCurrent(minutesSections.pomodoro);
-    setOptionActive('option0');
+    setOptionSectionON('section0');
     setExecuting('pomodoro');
     setBeginTimer(false);
   }
   function changeSectionShort() {
     setKeyPomodoro(prevState => prevState + 1);
     setTimerCurrent(minutesSections.short);
-    setOptionActive('option1');
+    setOptionSectionON('section1');
     setExecuting('short');
     setBeginTimer(false);
   }
   function changeSectionLong() {
     setKeyPomodoro(prevState => prevState + 1);
     setTimerCurrent(minutesSections.long);
-    setOptionActive('option2');
+    setOptionSectionON('section2');
     setExecuting('long');
     setBeginTimer(false);
   }
@@ -209,7 +206,7 @@ export function PomodoroProvider({ children }) {
     setSectionsPomodoro({ ...sectionsPomodoro, pomodoro: 4, short: 3, long: 1 });
     setTimerCurrent(minutesSections.pomodoro);
     setKeyPomodoro(prevState => prevState + 1);
-    setOptionActive('option0');
+    setOptionSectionON('section0');
     setExecuting('pomodoro');
     setBeginTimer(true);
   }
@@ -220,12 +217,12 @@ export function PomodoroProvider({ children }) {
 
   return (
     <PomodoroContext.Provider value={{
-      changeOptionON,
-      optionActive,
+      changeSectionON,
+      optionSectionON,
       changeOptionColorON,
-      optionColor,
+      optionColorON,
       changeOptionTextON,
-      optionText,
+      optionTextON,
       toggleStartTimer,
       beginTimer,
       minutesAndSeconds,

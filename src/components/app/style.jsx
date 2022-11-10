@@ -37,21 +37,21 @@ export const Controls = styled.div`
   }
 
   button:nth-child(1){
-    background-color: ${props =>  props.isActive === 'option0' ? props => props.theme.color : '#00000000' };
-    color: ${props =>  props.isActive === 'option0' ? '#1E213F' : '#D7E0FF' };
-    opacity: ${props =>  props.isActive === 'option0' ? '1' : '0.2' };
+    background-color: ${props =>  props.isActive === 'section0' ? props => props.theme.color : '#00000000' };
+    color: ${props =>  props.isActive === 'section0' ? '#181919' : '#D7E0FF' };
+    opacity: ${props =>  props.isActive === 'section0' ? '1' : '0.2' };
   }
 
   button:nth-child(2){
-    background-color: ${props =>  props.isActive === 'option1' ? props => props.theme.color : '#00000000' };
-    color: ${props =>  props.isActive === 'option1' ? '#1E213F' : '#D7E0FF' };
-    opacity: ${props =>  props.isActive === 'option1' ? '1' : '0.2' };
+    background-color: ${props =>  props.isActive === 'section1' ? props => props.theme.color : '#00000000' };
+    color: ${props =>  props.isActive === 'section1' ? '#1E213F' : '#D7E0FF' };
+    opacity: ${props =>  props.isActive === 'section1' ? '1' : '0.2' };
   }
 
   button:nth-child(3){
-    background-color: ${props =>  props.isActive === 'option2' ? props => props.theme.color : '#00000000' };
-    color: ${props =>  props.isActive === 'option2' ? '#1E213F' : '#D7E0FF' };
-    opacity: ${props =>  props.isActive === 'option2' ? '1' : '0.2' };
+    background-color: ${props =>  props.isActive === 'section2' ? props => props.theme.color : '#00000000' };
+    color: ${props =>  props.isActive === 'section2' ? '#1E213F' : '#D7E0FF' };
+    opacity: ${props =>  props.isActive === 'section2' ? '1' : '0.2' };
   } 
 `
 
