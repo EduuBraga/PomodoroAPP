@@ -37,22 +37,22 @@ export const Controls = styled.div`
   }
 
   button:nth-child(1){
-    background-color: ${props =>  props.isActive === 'option0' ? '#F87070' : '#00000000' };
-    color: ${props =>  props.isActive === 'option0' ? '#fff' : '#D7E0FF' };
+    background-color: ${props =>  props.isActive === 'option0' ? props => props.theme.color : '#00000000' };
+    color: ${props =>  props.isActive === 'option0' ? '#1E213F' : '#D7E0FF' };
     opacity: ${props =>  props.isActive === 'option0' ? '1' : '0.2' };
   }
 
   button:nth-child(2){
-    background-color: ${props =>  props.isActive === 'option1' ? '#F87070' : '#00000000' };
-    color: ${props =>  props.isActive === 'option1' ? '#fff' : '#D7E0FF' };
+    background-color: ${props =>  props.isActive === 'option1' ? props => props.theme.color : '#00000000' };
+    color: ${props =>  props.isActive === 'option1' ? '#1E213F' : '#D7E0FF' };
     opacity: ${props =>  props.isActive === 'option1' ? '1' : '0.2' };
   }
 
   button:nth-child(3){
-    background-color: ${props =>  props.isActive === 'option2' ? '#F87070' : '#00000000' };
-    color: ${props =>  props.isActive === 'option2' ? '#fff' : '#D7E0FF' };
+    background-color: ${props =>  props.isActive === 'option2' ? props => props.theme.color : '#00000000' };
+    color: ${props =>  props.isActive === 'option2' ? '#1E213F' : '#D7E0FF' };
     opacity: ${props =>  props.isActive === 'option2' ? '1' : '0.2' };
-  }
+  } 
 `
 
 export const Timer = styled.section`

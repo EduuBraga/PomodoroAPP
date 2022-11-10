@@ -24,9 +24,9 @@ export const Button = styled.button`
 
   &:active{
     transform: scale(0.96);
-    color: #F87070;
+    color: ${props => props.theme.color};
   }
   &:hover{
-    color: #F87070;
+    color: ${props => props.theme.color};
   }
 `

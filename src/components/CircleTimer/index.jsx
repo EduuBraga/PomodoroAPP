@@ -13,7 +13,8 @@ export function CircleTimer() {
     timer,
     keyPomodoro,
     finished,
-    RestartPomodoro
+    RestartPomodoro,
+    theme
   } = useContext(PomodoroContext);
 
   const [finalTimePomodoro, setFinalTimePomodoro] = useState(null);
@@ -24,7 +25,7 @@ export function CircleTimer() {
       size={'339'}
       isPlaying={beginTimer}
       duration={timer * 60}
-      colors={['#F87070']}
+      colors={[theme.color]}
       strokeWidth={11}
       trailColor="#161932"
       onComplete={() => {
