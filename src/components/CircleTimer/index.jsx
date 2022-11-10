@@ -27,7 +27,7 @@ export function CircleTimer() {
     <CountdownCircleTimer
       key={keyPomodoro}
       size={'339'}
-      isPlaying={beginTimer}
+      isPlaying={beginTimer * 60}
       duration={timerCurrent}
       colors={[theme.color]}
       strokeWidth={11}
