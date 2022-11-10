@@ -3,7 +3,7 @@ import { ThemeProvider } from "styled-components";
 import { PomodoroContext } from "../../provider/PomodoroSettings";
 import { GlobalStyles } from '../../styles/globalStyles/style';
 
-import settingsImgURL from '../../assets/icons/settings.png';
+import settingsImgURL from '../../../public/settings.png';
 
 import { Button } from "../Button/style";
 import { CircleTimer } from "../CircleTimer";
