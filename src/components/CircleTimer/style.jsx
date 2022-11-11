@@ -22,6 +22,12 @@ export const Button = styled.button`
   background-color: #00000000;
   transition: all 0.3s ease;
 
+  @media screen and (max-width: 425px){
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 13.125px;
+  }
+
   &:active{
     transform: scale(0.96);
     color: ${props => props.theme.color};

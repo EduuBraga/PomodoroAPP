@@ -27,6 +27,12 @@ export const GlobalStyles = createGlobalStyle`
     line-height: 120px;
     font-weight: 700;
     letter-spacing: -5px;
+
+    @media screen and (max-width: 425px){
+      font-size: 80px;
+      line-height: 99px;
+      letter-spacing: -4px;
+    }
   }
 
   h2{

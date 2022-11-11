@@ -73,6 +73,11 @@ export const Timer = styled.section`
   width: 366px;
   height: 366px;
 
+  @media screen and (max-width: 425px){
+    width: 267.8px;
+    height: 267.8px;
+  }
+
   @media screen and (max-width: 768px){
     margin-top: 54px;
   }
@@ -85,10 +90,14 @@ export const BorderBackground = styled.div`
   border-radius: 50%;
   background-image: linear-gradient(315deg, #2E325A 0%, #0E112A 100%); 
   box-shadow: -50px -50px 100px #272C5A, 50px 50px 100px #121530;
-
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media screen and (max-width: 425px){
+    width: 300px;
+    height: 300px;
+  }
 `
 
 export const ContainerSettings = styled.section`

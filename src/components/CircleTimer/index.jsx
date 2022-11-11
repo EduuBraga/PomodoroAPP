@@ -20,12 +20,23 @@ export function CircleTimer() {
   } = useContext(PomodoroContext);
 
   const [finalTimePomodoro, setFinalTimePomodoro] = useState(null);
+  const [screenMobile, setScreenMobile] = useState('339');
   const audioCompleteTask = useRef(null);
+
+  window.addEventListener('resize', function(){
+
+    if (window.innerWidth > 425) {
+        setScreenMobile('339')
+    } else {
+        setScreenMobile('248')
+    }
+
+  })
 
   return (
     <CountdownCircleTimer
       key={keyPomodoro}
-      size={'339'}
+      size={screenMobile}
       isPlaying={beginTimer}
       duration={timerCurrent  * 60}
       colors={[theme.color]}
