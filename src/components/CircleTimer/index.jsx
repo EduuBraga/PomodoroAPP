@@ -38,7 +38,7 @@ export function CircleTimer() {
       key={keyPomodoro}
       size={screenMobile}
       isPlaying={beginTimer}
-      duration={timerCurrent}
+      duration={timerCurrent  * 60}
       colors={[theme.color]}
       strokeWidth={11}
       trailColor="#161932"
