@@ -21,5 +21,13 @@ export const Button = styled.button`
   @media screen and (max-width: 768px){
     width: 120px;
     height: 48px;
+    font-size: 14px;
+    line-height: 18px;
+  }
+  @media screen and (max-width: 425px){
+    width: 105.2px;
+    height: 48px;
+    font-size: 12px;
+    line-height: 15px;
   }
 `
