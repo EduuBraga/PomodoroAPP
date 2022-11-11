@@ -6,7 +6,8 @@
 
 ## 💻 Sobre o Projeto
 <p>
-  A aplicação trata-se de um pomodoro WEB. Pomodoros são úteis para você estudar, pois consiste focar o máximo possível naquela atividade até o final do tempo.
+  A aplicação trata-se de um pomodoro WEB. 
+  Pomodoros são úteis para você estudar, pois consiste em focar o máximo possível naquela atividade até o final do tempo.
 </p>
 
 ## ⚙ Funcionalides
