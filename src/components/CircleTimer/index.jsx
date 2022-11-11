@@ -22,14 +22,17 @@ export function CircleTimer() {
   const [finalTimePomodoro, setFinalTimePomodoro] = useState(null);
   const [screenMobile, setScreenMobile] = useState('339');
   const audioCompleteTask = useRef(null);
+  
+  useEffect(() => {
+    let width = window.innerWidth
 
-  window.addEventListener('resize', function () {
-    if (window.innerWidth > 425) {
+    if (width > 425) {
       setScreenMobile('339')
     } else {
       setScreenMobile('248')
     }
-  })
+  }, [])
+
 
   useEffect(() => {
     beginTimer ? window.document.title = `${finalTimePomodoro} Tempo restante` : window.document.title = "Pomodoro APP"
