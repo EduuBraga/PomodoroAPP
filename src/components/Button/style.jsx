@@ -12,10 +12,14 @@ export const Button = styled.button`
   border-radius: 26.5px;
   border: none;
   cursor: pointer;
-  font-family: 'Kumbh Sans', sans-serif !important;
   transition: all 0.2s ease-in-out;
 
   &:hover{
     background-color: ${props => `${props.theme.hover}`};
+  }
+
+  @media screen and (max-width: 768px){
+    width: 120px;
+    height: 48px;
   }
 `

@@ -5,6 +5,10 @@ export const Container = styled.main`
   flex-direction: column;
   align-items: center;
   gap: 45px;
+
+  @media screen and (max-width: 768px){
+    gap: 55px;
+  }
 `
 
 export const Title = styled.h1`
@@ -15,6 +19,10 @@ export const Title = styled.h1`
   letter-spacing: normal;
   margin: 48px 0px 10px 0px;
   font-family: 'Kumbh Sans', sans-serif !important;
+
+  @media screen and (max-width: 768px){
+    margin: 80px 0px 0px 0px;
+  }
 `
 
 export const Controls = styled.div`
@@ -64,6 +72,10 @@ export const Timer = styled.section`
   border-radius: 50%;
   width: 366px;
   height: 366px;
+
+  @media screen and (max-width: 768px){
+    margin-top: 54px;
+  }
 `
 
 export const BorderBackground = styled.div`
@@ -80,10 +92,15 @@ export const BorderBackground = styled.div`
 `
 
 export const ContainerSettings = styled.section`
- margin-top: 22px;
+  margin-top: 22px;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media screen and (max-width: 768px){
+    margin-top: 80px;
+    margin-bottom: 80px;
+  }
 
   img{
     width: 28px;
@@ -91,7 +108,7 @@ export const ContainerSettings = styled.section`
     cursor: pointer;
 
     &:active{
-      transform: scale(0.97);
+      transform: scale(0.95);
     }
   }
 `
