@@ -36,7 +36,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   h3{
-    font: 16px;
+    font-size: 16px;
     font-weight: 700;
     line-height: 19px;
     letter-spacing: 15px;
@@ -49,5 +49,9 @@ export const GlobalStyles = createGlobalStyle`
     line-height: 16px;
     letter-spacing: 5px;
     text-transform: uppercase;
+
+    @media screen and (max-width: 700px){
+      font-size: 11px;
+    }
   }
 `

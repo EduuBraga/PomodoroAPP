@@ -20,17 +20,22 @@ export const Container = styled.div`
   align-items: center;
   color: black;
 `
-
+                 
 export const Card = styled.section`
   animation: ${opacityAnimation} 0.3s ease-in-out;
   background-color: #fff;
-  width: 540px;
+  width: 540px; 
   height: 464px;
   border-radius: 25px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
+  position: relative; 
+
+  @media screen and (max-width: 700px){
+    width: 327px;
+    height: 549px;
+  }
 
   button{
     position: absolute;
@@ -47,10 +52,12 @@ export const HeaderCard = styled.header`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  
-
   padding: 32px 40px;
   border-bottom: 1px solid #E3E1E1;
+
+  @media screen and (max-width: 700px){
+    padding: 24px;
+  }
 
   div{
     display: flex;
@@ -89,6 +96,11 @@ export const HeaderCard = styled.header`
 
 export const ContentCard = styled.main`
   padding: 28px 38px 72px 40px;
+
+  @media screen and (max-width: 700px){
+    padding: 24px 24px 59px 23px;
+    width:100%;
+  }
 `
 
 export const ContainerMinutes = styled.div`
@@ -97,7 +109,11 @@ export const ContainerMinutes = styled.div`
   gap: 24px;
   padding-bottom: 24px;
   border-bottom: 1px solid #E3E1E1;
-  
+
+  @media screen and (max-width: 700px){
+    align-items: center;
+    gap: 18px;
+  }
 `
 
 
@@ -105,11 +121,22 @@ export const InputsMinutes = styled.div`
   display: flex;
   gap: 20px;
 
+  @media screen and (max-width: 700px){
+    flex-direction: column ;
+    gap: 8px;
+    width: 100%;
+  }
+
   div{
     display: flex;
     flex-direction: column; 
     gap: 8px;
     
+    @media screen and (max-width: 700px){
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
     
     label{
       font-weight: 700;
@@ -129,6 +156,10 @@ export const InputsMinutes = styled.div`
       font-size: 14px;
       line-height: 17px;
       padding: 15px 16px;
+
+      @media screen and (max-width: 700px){
+        height: 40px;
+      }
     }
   }
 `
@@ -139,7 +170,13 @@ export const ContainerFonts = styled.div`
   align-items: center;
   padding: 24px 0px 24px 0px;
   border-bottom: 1px solid #E3E1E1;
-  
+
+  @media screen and (max-width: 700px){
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    gap: 18px;
+  }
 
   div{
     display: flex;
@@ -164,6 +201,7 @@ export const ContainerFonts = styled.div`
       background-color: ${props => props.isCheck === 'option_text1' ? '#000000' : '#EFF1FA'};
       color: ${props => props.isCheck === 'option_text1' ? '#ffffff' : '#1E213F'};
       font-family: 'Roboto Slab', serif !important;
+      font-weight: 700 !important;
     }
 
     div:nth-child(3){
@@ -180,6 +218,13 @@ export const ContainerColors = styled.div`
   align-items: center;
   padding: 24px 0px 24px 0px;
   
+  @media screen and (max-width: 700px){
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    gap: 18px;
+    padding: 16px 0px 0px 0px;
+  }
 
   div{
     display: flex;
