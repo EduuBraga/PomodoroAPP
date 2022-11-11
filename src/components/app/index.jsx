@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { ThemeProvider } from "styled-components";
 import { PomodoroContext } from "../../provider/PomodoroSettings";
 import { GlobalStyles } from '../../styles/globalStyles/style';
@@ -34,8 +34,8 @@ export function App() {
 
         <Controls isActive={optionSectionON}>
           <Button className="options" name="pomodoro" onClick={handleClickSections}>pomodoro</Button>
-          <Button className="options" name="short" onClick={handleClickSections}>short break</Button>
-          <Button className="options" name="long" onClick={handleClickSections}>long break</Button>
+          <Button className="options" name="short" onClick={handleClickSections}>intervalo curto</Button>
+          <Button className="options" name="long" onClick={handleClickSections}>intervalo longo</Button>
         </Controls>
 
         <Timer>

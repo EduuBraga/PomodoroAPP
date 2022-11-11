@@ -24,15 +24,15 @@ export function CircleTimer() {
   const audioCompleteTask = useRef(null);
 
   useEffect(() => {
-    let width = window.innerWidth
+    let width = window.innerWidth;
 
     if (width <= 425) {
-      setScreenMobile('248')
+      setScreenMobile('248');
     }
-  }, [])
+  }, []);
 
   function changeTitle(){
-    beginTimer ? window.document.title = `${finalTimePomodoro} Tempo restante` : window.document.title = "Pomodoro APP"
+    beginTimer ? window.document.title = `${finalTimePomodoro} Tempo restante` : window.document.title = "Pomodoro APP";
   }
 
   return (
@@ -68,9 +68,9 @@ export function CircleTimer() {
           <h1>{finalTimePomodoro}</h1>
 
           {finished ? (
-            <Button onClick={RestartPomodoro}>Restart</Button>
+            <Button onClick={RestartPomodoro}>recomeçar</Button>
           ) : (
-            beginTimer ? (<Button onClick={toggleStartTimer}>pause</Button>) : (<Button onClick={toggleStartTimer}>start</Button>)
+            beginTimer ? (<Button onClick={toggleStartTimer}>pausar</Button>) : (<Button onClick={toggleStartTimer}>começar</Button>)
           )}
 
           <audio preload="auto" ref={audioCompleteTask} src={complete_task}></audio>

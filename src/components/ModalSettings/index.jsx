@@ -28,7 +28,7 @@ export function ModalSettings({ setModalVisible }) {
     <Container>
       <Card>
         <HeaderCard>
-          <h2>Settings</h2>
+          <h2>Configurações</h2>
 
           <div>
             <img onClick={_ => { setModalVisible(false) }} src={closeImgURL} alt="Ícone para fechar o modal" />
@@ -38,7 +38,7 @@ export function ModalSettings({ setModalVisible }) {
 
         <ContentCard>
           <ContainerMinutes>
-            <h4>TIME (MINUTES)</h4>
+            <h4>TEMPO (MINUTOS)</h4>
 
             <InputsMinutes>
               <div>
@@ -47,19 +47,19 @@ export function ModalSettings({ setModalVisible }) {
               </div>
 
               <div>
-                <label>short break</label>
+                <label>Intervalo curto</label>
                 <input type="number" name='short' onChange={changeValueInputs} value={minutesShort} />
               </div>
 
               <div>
-                <label>long break</label>
+                <label>Intervalo longo</label>
                 <input type="number" name='long' onChange={changeValueInputs} value={minutesLong} />
               </div>
             </InputsMinutes>
           </ContainerMinutes>
 
           <ContainerFonts isCheck={optionTextON}>
-            <h4>FONT</h4>
+            <h4>fonte</h4>
 
             <div>
               <div onClick={changeOptionTextON} className="options_text">Aa</div>
@@ -69,7 +69,7 @@ export function ModalSettings({ setModalVisible }) {
           </ContainerFonts>
 
           <ContainerColors isCheck={optionColorON}>
-            <h4>COLOR</h4>
+            <h4>tema</h4>
 
             <div>
               <span onClick={changeOptionColorON} className="options_colors">
@@ -87,7 +87,7 @@ export function ModalSettings({ setModalVisible }) {
           </ContainerColors>
 
           <ContainerSwitch>
-            <p>Automatic start of sessions</p>
+            <p>Início automático das sessões</p>
             
             <Switch autoStartCheck={autoStartCheck}>
               <div>
@@ -98,7 +98,7 @@ export function ModalSettings({ setModalVisible }) {
           </ContainerSwitch>
         </ContentCard>
 
-        <Button onClick={ApplyChangeInputs}>Aplly</Button>
+        <Button onClick={ApplyChangeInputs}>Aplicar</Button>
       </Card>
     </Container>
   );
