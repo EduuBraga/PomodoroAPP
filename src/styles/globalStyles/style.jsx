@@ -25,11 +25,11 @@ export const GlobalStyles = createGlobalStyle`
   h1{
     font-size: 100px;
     line-height: 120px;
-    font-weight: 700;
+    font-weight: ${props => props.fonts.font === "'Space Mono', monospace" ?  '400' : '700'};
     letter-spacing: -5px;
 
     @media screen and (max-width: 425px){
-      font-size: 80px;
+      font-size: 70px;
       line-height: 99px;
       letter-spacing: -4px;
     }
