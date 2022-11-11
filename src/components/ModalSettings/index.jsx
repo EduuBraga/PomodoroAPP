@@ -7,7 +7,7 @@ import checkImgURL from '../../assets/icons/check.png';
 
 import { Button } from "../Button/style";
 
-import { Container, Card, HeaderCard, ContentCard, ContainerMinutes, InputsMinutes, ContainerFonts, ContainerColors } from "./style";
+import { Container, Card, HeaderCard, ContentCard, ContainerMinutes, InputsMinutes, ContainerFonts, ContainerColors, Switch, ContainerSwitch } from "./style";
 
 export function ModalSettings({ setModalVisible }) {
   const {
@@ -19,7 +19,9 @@ export function ModalSettings({ setModalVisible }) {
     minutesPomodoro,
     minutesShort,
     minutesLong,
-    ApplyChangeInputs
+    ApplyChangeInputs,
+    autoStartCheck,
+    toggleAutoStartCheck
   } = useContext(PomodoroContext);
 
   return (
@@ -83,6 +85,17 @@ export function ModalSettings({ setModalVisible }) {
               </span>
             </div>
           </ContainerColors>
+
+          <ContainerSwitch>
+            <p>Automatic start of sessions</p>
+            
+            <Switch autoStartCheck={autoStartCheck}>
+              <div>
+                <input type="checkbox" onClick={toggleAutoStartCheck} />
+                <span></span>
+              </div>
+            </Switch>
+          </ContainerSwitch>
         </ContentCard>
 
         <Button onClick={ApplyChangeInputs}>Aplly</Button>

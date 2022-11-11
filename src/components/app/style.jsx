@@ -63,52 +63,6 @@ export const Controls = styled.div`
   } 
 `
 
-export const ContainerSwitch = styled.section`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-`
-
-export const Switch = styled.label`
-  cursor: pointer;
-
-  div{
-    width: 60px;
-    height: 30px;
-    position: relative;
-  }
-
-  span{
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      display: flex;
-      align-items: center;
-      border-radius: 40px;
-      background-color: ${props => props.autoStartCheck ? props.theme.color : '#787c8a' };
-  }
-
-  span::before {
-      content: "";
-      width: 23px;
-      height: 23px;
-      background-color: #ffffff;
-      border-radius: 50%;
-      position: absolute;
-      left: 3px;
-      transition: .5s all ease;
-      transform: translateX(${props => props.autoStartCheck ? '30px' : '0px' });
-  }
-
-  input{
-    position: relative;
-    left: 10px;
-  }
-`
-
 export const Timer = styled.section`
   display: flex;
   justify-content: center;

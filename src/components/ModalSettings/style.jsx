@@ -10,11 +10,10 @@ const opacityAnimation = keyframes`
 
 export const Container = styled.div`
   animation: ${opacityAnimation} 0.3s ease-in-out;
-  background-color: #0A0C1C80;
+  background-color: #0A0C1C98;
   position: fixed;
   top: 0; right: 0; bottom: 0; left: 0;
   z-index: 15;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,7 +24,7 @@ export const Card = styled.section`
   animation: ${opacityAnimation} 0.3s ease-in-out;
   background-color: #fff;
   width: 540px; 
-  height: 464px;
+  height: 530px;
   border-radius: 25px;
   display: flex;
   flex-direction: column;
@@ -34,7 +33,7 @@ export const Card = styled.section`
 
   @media screen and (max-width: 700px){
     width: 327px;
-    height: 549px;
+    height: 600px;
   }
 
   button{
@@ -175,7 +174,8 @@ export const ContainerFonts = styled.div`
     flex-direction: column;
     align-items: center;
     justify-items: center;
-    gap: 18px;
+    gap: 15px;
+    padding: 18px 0px 18px 0px;
   }
 
   div{
@@ -217,13 +217,14 @@ export const ContainerColors = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 24px 0px 24px 0px;
+  border-bottom: 1px solid #E3E1E1;
   
   @media screen and (max-width: 700px){
     flex-direction: column;
     align-items: center;
     justify-items: center;
-    gap: 18px;
-    padding: 16px 0px 0px 0px;
+    gap: 15px;
+    padding: 16px 0px 18px 0px;
   }
 
   div{
@@ -257,5 +258,52 @@ export const ContainerColors = styled.div`
     span:nth-child(3){
       background-color: #D881F8;
     }
+  }
+`
+
+export const ContainerSwitch = styled.section`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 24px 0px 24px 0px;
+`
+
+export const Switch = styled.label`
+  cursor: pointer;
+
+  div{
+    width: 60px;
+    height: 30px;
+    position: relative;
+  }
+
+  span{
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      border-radius: 40px;
+      background-color: ${props => props.autoStartCheck ? '#1E213F' : '#787c8a' };
+  }
+
+  span::before {
+      content: "";
+      width: 23px;
+      height: 23px;
+      background-color: #ffffff;
+      border-radius: 50%;
+      position: absolute;
+      left: 3px;
+      transition: .5s all ease;
+      transform: translateX(${props => props.autoStartCheck ? '30px' : '0px' });
+  }
+
+  input{
+    position: relative;
+    left: 10px;
   }
 `
