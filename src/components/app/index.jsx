@@ -17,15 +17,12 @@ export function App() {
     optionSectionON,
     toggleSectionPomodoro,
     theme,
-    font
+    font,
+    autoStartCheck,
+    toggleAutoStartCheck
   } = useContext(PomodoroContext);
 
   const [modalVisible, setModalVisible] = useState(false);
-  const [autoStartCheck, setAutoStartCheck] = useState(false);
-
-  function toggleAutoStartCheck(){
-    autoStartCheck ? setAutoStartCheck(false) : setAutoStartCheck(true)
-  }
 
   useEffect(()=>{
     console.log(autoStartCheck)

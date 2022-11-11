@@ -9,6 +9,7 @@ export function PomodoroProvider({ children }) {
   const [optionSectionON, setOptionSectionON] = useState('section0');
   const [optionColorON, setOptionColorON] = useState('option_color0');
   const [optionTextON, setOptionTextON] = useState('option_text0');
+  const [autoStartCheck, setAutoStartCheck] = useState(false);
   const [theme, setTheme] = useState(themeRed);
   const [font, setFont] = useState(font1);
   const [priorTheme, setPriorTheme] = useState(null);
@@ -25,27 +26,30 @@ export function PomodoroProvider({ children }) {
   const [keyPomodoro, setKeyPomodoro] = useState(1);
   const [beginTimer, setBeginTimer] = useState(false);
   const [finished, setFinished] = useState(false);
+
+
+  //Salvando e buscando configurações no armazenamento local.
   
   useEffect(()=>{
-    let configsSalved = JSON.parse(localStorage.getItem('configs'))
+    let configsSalved = JSON.parse(localStorage.getItem('configs'));
 
     if(configsSalved !== null){
-      setMinutesPomodoro(configsSalved.minutesPomodoro)
-      setMinutesShort(configsSalved.minutesShort)
-      setMinutesLong(configsSalved.minutesLong)
-      setMinutesSections(configsSalved.minutesSections)
-      setFont(configsSalved.font)
-      setTheme(configsSalved.theme)
-      setOptionColorON(configsSalved.optionColorON)
-      setOptionTextON(configsSalved.optionTextON)
+      setMinutesPomodoro(configsSalved.minutesPomodoro);
+      setMinutesShort(configsSalved.minutesShort);
+      setMinutesLong(configsSalved.minutesLong);
+      setMinutesSections(configsSalved.minutesSections);
+      setFont(configsSalved.font);
+      setTheme(configsSalved.theme);
+      setOptionColorON(configsSalved.optionColorON);
+      setOptionTextON(configsSalved.optionTextON);
     }
   }, [])
 
   useEffect(()=>{
-    let salveConfig = {font, theme, minutesSections, minutesPomodoro, minutesShort, minutesLong, optionColorON, optionTextON}
+    let salveConfig = {font, theme, minutesSections, minutesPomodoro, minutesShort, minutesLong, optionColorON, optionTextON};
 
-    localStorage.setItem('configs', JSON.stringify(salveConfig))
-  }, [font, theme, minutesSections, minutesPomodoro, minutesShort, minutesLong, optionColorON, optionTextON])
+    localStorage.setItem('configs', JSON.stringify(salveConfig));
+  }, [font, theme, minutesSections, minutesPomodoro, minutesShort, minutesLong, optionColorON, optionTextON]);
 
   //Trocando fonte e tema.
 
@@ -120,7 +124,7 @@ export function PomodoroProvider({ children }) {
   }
 
 
-  // Manipulando os inputs com os valores dos minutos
+  // Manipulando os inputs 
 
   function changeValueInputs(input) {
     const { name, value } = input.target;
@@ -138,6 +142,10 @@ export function PomodoroProvider({ children }) {
       default:
         break;
     }
+  }
+
+  function toggleAutoStartCheck(){
+    autoStartCheck ? setAutoStartCheck(false) : setAutoStartCheck(true);
   }
 
   // Manipulando o Pomodoro
@@ -260,7 +268,9 @@ export function PomodoroProvider({ children }) {
       finished,
       RestartPomodoro,
       theme,
-      font
+      font,
+      autoStartCheck,
+      toggleAutoStartCheck
     }}>
       {children}
     </PomodoroContext.Provider>
