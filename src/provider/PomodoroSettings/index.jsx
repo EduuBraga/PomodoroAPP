@@ -148,6 +148,7 @@ export function PomodoroProvider({ children }) {
     autoStartCheck ? setAutoStartCheck(false) : setAutoStartCheck(true);
   }
 
+
   // Manipulando o Pomodoro
 
   function toggleStartTimer() {
@@ -163,21 +164,21 @@ export function PomodoroProvider({ children }) {
     setTimerCurrent(minutesSections.pomodoro);
     setOptionSectionON('section0');
     setExecuting('pomodoro');
-    setBeginTimer(false);
+    autoStartCheck ? setBeginTimer(true) : setBeginTimer(false)
   }
   function changeSectionShort() {
     setKeyPomodoro(prevState => prevState + 1);
     setTimerCurrent(minutesSections.short);
     setOptionSectionON('section1');
     setExecuting('short');
-    setBeginTimer(false);
+    autoStartCheck ? setBeginTimer(true) : setBeginTimer(false)
   }
   function changeSectionLong() {
     setKeyPomodoro(prevState => prevState + 1);
     setTimerCurrent(minutesSections.long);
     setOptionSectionON('section2');
     setExecuting('long');
-    setBeginTimer(false);
+    autoStartCheck ? setBeginTimer(true) : setBeginTimer(false)
   }
 
   function toggleStatePomodoro() {
