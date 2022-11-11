@@ -22,21 +22,18 @@ export function CircleTimer() {
   const [finalTimePomodoro, setFinalTimePomodoro] = useState(null);
   const [screenMobile, setScreenMobile] = useState('339');
   const audioCompleteTask = useRef(null);
-  
+
   useEffect(() => {
     let width = window.innerWidth
 
-    if (width > 425) {
-      setScreenMobile('339')
-    } else {
+    if (width <= 425) {
       setScreenMobile('248')
     }
   }, [])
 
-
-  useEffect(() => {
+  function changeTitle(){
     beginTimer ? window.document.title = `${finalTimePomodoro} Tempo restante` : window.document.title = "Pomodoro APP"
-  }, [beginTimer, finalTimePomodoro])
+  }
 
   return (
     <CountdownCircleTimer
@@ -61,6 +58,7 @@ export function CircleTimer() {
 
           let finalTime = minutesAndSeconds(minutes, '0', 2) + ':' + minutesAndSeconds(seconds, '0', 2);
 
+          changeTitle()
           setFinalTimePomodoro(finalTime);
         }
       }
