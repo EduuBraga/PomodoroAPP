@@ -244,6 +244,7 @@ export function PomodoroProvider({ children }) {
 
   useEffect(()=>{
     changeSectionPomodoro();
+    setBeginTimer(false)
   }, [minutesSections]);
 
   return (
